@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+logs/
+__pycache__/
+*.py[cod]
+cloudflared.exe
+tunnel_supervisor.py
+tunnel_url.txt
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+.gemini/
+.codex/
+.agents/

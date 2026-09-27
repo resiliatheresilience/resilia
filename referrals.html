@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referrals | RESILIA | For Professional Referrals</title>
+  <meta name="description" content="Resilia welcomes referrals from GPs, paediatricians, psychiatrists, educators, social workers and other health and allied health professionals.">
+  <meta name="theme-color" content="#143564">
+
+  <link rel="icon" type="image/png" href="assets/images/resilia-emblem-primary.png">
+  <link rel="stylesheet" href="assets/css/resilia.css">
+
+  <style>
+    /* ------------------------------------------------------------------ */
+    /* PAGE-HERO-NARROW — shorter than the standard two-column hero        */
+    /* ------------------------------------------------------------------ */
+    .page-hero-narrow {
+      background: radial-gradient(ellipse at 70% 0%, rgba(62, 89, 108, 0.5) 0%, transparent 60%),
+                  linear-gradient(135deg, #0B2142 0%, #143564 45%, #204E8A 80%, #3E72B0 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;
+      color: var(--color-text-on-dark);
+      padding-top: clamp(7rem, 5.5rem + 5vw, 9.5rem);
+      padding-bottom: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .page-hero-narrow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/images/leaf-shadow-texture.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .page-hero-narrow .container {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width-narrow);
+    }
+
+    .page-hero-narrow .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-ivory);
+      opacity: 0.8;
+      margin-bottom: var(--space-md);
+    }
+
+    .page-hero-narrow .hero-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background-color: var(--color-ivory);
+      opacity: 0.6;
+    }
+
+    .page-hero-narrow h1 {
+      font-size: clamp(2.4rem, 1.9rem + 2.2vw, 3.8rem);
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-lg);
+    }
+
+    .page-hero-narrow .hero-lead {
+      font-size: var(--font-size-md);
+      color: var(--color-text-on-dark-muted);
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* INTRO — two-column editorial, emblem as decorative right element    */
+    /* ------------------------------------------------------------------ */
+    .referral-intro-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(2.5rem, 2rem + 4vw, 5.5rem);
+      align-items: center;
+    }
+
+    .referral-emblem-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .referral-emblem-visual img {
+      width: clamp(200px, 28vw, 340px);
+      height: auto;
+      opacity: 0.14;
+      filter: saturate(0.6);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* CHECKLIST — clean, elegant checkmark list                           */
+    /* ------------------------------------------------------------------ */
+    .referral-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin: var(--space-xl) 0;
+    }
+
+    .referral-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .checklist-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: var(--color-primary-mist);
+      border: 1.5px solid rgba(62, 89, 108, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .checklist-icon svg {
+      display: block;
+    }
+
+    .referral-note {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-style: italic;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(62, 89, 108, 0.12);
+      line-height: 1.7;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* SERVICES FOR REFERRAL CARDS — 2-column grid                        */
+    /* ------------------------------------------------------------------ */
+    .referral-services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+      margin-top: var(--space-2xl);
+    }
+
+    .referral-service-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(62, 89, 108, 0.1);
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
+    }
+
+    .referral-service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: var(--color-primary);
+    }
+
+    .referral-service-card-title {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .referral-service-card-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* CONTACT BLOCK — on deep blue, prominent practitioner display        */
+    /* ------------------------------------------------------------------ */
+    .referral-contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 2rem + 4vw, 5.5rem);
+      align-items: center;
+    }
+
+    .referral-contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: var(--space-xl);
+    }
+
+    .referral-contact-name {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+
+    .referral-contact-role {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-on-dark-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .referral-contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .referral-contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: var(--font-size-base);
+      font-weight: 500;
+      color: var(--color-ivory);
+      transition: var(--transition);
+    }
+
+    .referral-contact-link:hover {
+      color: #FFFFFF;
+      transform: translateX(3px);
+    }
+
+    .referral-contact-link svg {
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+
+    .referral-contact-aside {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(236, 227, 222, 0.16);
+      border-radius: var(--radius-xl);
+      padding: 2.75rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .referral-contact-aside p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-on-dark-muted);
+      line-height: 1.75;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* FOOTER LOGO + TAGLINE (utilities carried from main CSS)             */
+    /* ------------------------------------------------------------------ */
+    .footer-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-on-dark-muted);
+      margin-bottom: 1rem;
+    }
+
+    .footer-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-on-dark-muted);
+      line-height: 1.7;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* RESPONSIVE                                                          */
+    /* ------------------------------------------------------------------ */
+    @media (max-width: 1024px) {
+      .referral-intro-grid { grid-template-columns: 1fr; }
+      .referral-emblem-visual { display: none; }
+      .referral-contact-inner { grid-template-columns: 1fr; }
+      .referral-services-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .referral-services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/site-refresh.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER & PUBLIC NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="RESILIA Home">
+        <img src="assets/images/resilia-lockup-primary.png" alt="RESILIA - The journey of nurturing resilience." class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Public navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="assessments.html" class="nav-link">Assessments</a>
+        <a href="workshops.html" class="nav-link">Workshops</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="referrals.html" class="nav-link active" aria-current="page">Referrals</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="book.html" class="btn btn-ivory btn-sm">Book an Appointment</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         01 — HERO (NARROW)
+         ========================================================================== -->
+    <section class="page-hero-narrow" aria-labelledby="referrals-hero-title">
+      <div class="container">
+        <div class="page-hero-narrow hero-eyebrow fade-in-up" style="display: inline-flex; margin-bottom: var(--space-md);">FOR PROFESSIONALS</div>
+        <h1 id="referrals-hero-title" class="fade-in-up delay-1">For Professional Referrals</h1>
+        <p class="hero-lead fade-in-up delay-2">
+          Resilia welcomes referrals from GPs, paediatricians, psychiatrists, educators, social workers and other health and allied health professionals.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02 — INTRO (EDITORIAL TWO-COLUMN)
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="referral-intro-heading">
+      <div class="container">
+        <div class="referral-intro-grid">
+
+          <!-- Left: text -->
+          <div class="fade-in-up">
+            <div class="eyebrow">TRUSTED REFERRAL PARTNER</div>
+            <h2 id="referral-intro-heading" style="margin-bottom: 1.5rem;">A trusted referral partner.</h2>
+
+            <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: 1.25rem; line-height: 1.8;">
+              Resilia offers psychological counselling and assessment services for individuals, children, adolescents, couples and families. We work collaboratively with referring professionals to ensure that care is coordinated, well-communicated and in the best interest of the individual.
+            </p>
+            <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: 1.25rem; line-height: 1.8;">
+              Referrals are welcomed from GPs, paediatricians, psychiatrists, educators, school counsellors, social workers and other health and allied health professionals.
+            </p>
+            <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.8;">
+              Following an initial consultation, a summary letter can be provided to the referring professional with the individual's consent.
+            </p>
+          </div>
+
+          <!-- Right: referral partnership photograph -->
+          <div class="referral-emblem-visual referral-photo-visual fade-in-up delay-2">
+            <img src="assets/images/referral-partnership.jpg" alt="A professional and client greeting each other with a handshake during a meeting" loading="lazy">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03 — WHAT TO INCLUDE IN A REFERRAL
+         ========================================================================== -->
+    <section class="section-padding bg-linen" aria-labelledby="referral-info-heading">
+      <div class="container">
+        <div class="referral-info-copy">
+          <div class="eyebrow fade-in-up">REFERRAL INFORMATION</div>
+          <h2 id="referral-info-heading" class="fade-in-up delay-1" style="margin-bottom: 1rem;">What to Include</h2>
+          <p class="text-lead fade-in-up delay-1" style="margin-bottom: 0;">
+            To help us prepare for an initial consultation, the following information is helpful — though not always required.
+          </p>
+
+          <ul class="referral-checklist fade-in-up delay-2" role="list">
+            <li>
+              <span class="checklist-icon" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span>The individual's name, age and contact details</span>
+            </li>
+            <li>
+              <span class="checklist-icon" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span>A brief summary of the presenting concern or reason for referral</span>
+            </li>
+            <li>
+              <span class="checklist-icon" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span>Relevant background — medical, developmental, educational or psychological history</span>
+            </li>
+            <li>
+              <span class="checklist-icon" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span>Any previous assessments or reports (where available and with consent)</span>
+            </li>
+            <li>
+              <span class="checklist-icon" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span>Preferred mode of contact for the referring professional</span>
+            </li>
+          </ul>
+
+          <p class="referral-note fade-in-up delay-3">
+            All information shared is handled in accordance with professional confidentiality standards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04 — SERVICES AVAILABLE FOR REFERRAL
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="referral-services-heading">
+      <div class="container">
+        <div class="referral-services-heading">
+          <div class="eyebrow fade-in-up">AVAILABLE SERVICES</div>
+          <h2 id="referral-services-heading" class="fade-in-up delay-1">Services Available for Referral</h2>
+        </div>
+
+        <div class="referral-services-grid">
+
+          <article class="referral-service-card fade-in-up delay-1">
+            <div class="referral-service-card-title">Individual Counselling</div>
+            <p class="referral-service-card-desc">
+              For adults navigating personal, emotional and life-related concerns.
+            </p>
+          </article>
+
+          <article class="referral-service-card fade-in-up delay-1">
+            <div class="referral-service-card-title">Adolescent &amp; Child Counselling</div>
+            <p class="referral-service-card-desc">
+              For children and teenagers experiencing emotional, behavioural or developmental concerns.
+            </p>
+          </article>
+
+          <article class="referral-service-card fade-in-up delay-2">
+            <div class="referral-service-card-title">Couples &amp; Family Counselling</div>
+            <p class="referral-service-card-desc">
+              For couples and families working through relational, communication or systemic concerns.
+            </p>
+          </article>
+
+          <article class="referral-service-card fade-in-up delay-2">
+            <div class="referral-service-card-title">Psychological Assessments</div>
+            <p class="referral-service-card-desc">
+              Cognitive, learning, emotional, behavioural and developmental assessments. Assessment findings are shared via a feedback session and, where appropriate, a written report.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05 — CONTACT FOR REFERRALS (deep blue)
+         ========================================================================== -->
+    <section class="section-padding bg-deep-blue" aria-labelledby="referral-contact-heading">
+      <div class="container">
+        <div class="referral-contact-inner">
+
+          <!-- Left: heading + practitioner contact -->
+          <div class="fade-in-up">
+            <div class="eyebrow eyebrow-on-dark">GET IN TOUCH</div>
+            <h2 id="referral-contact-heading" style="color: #FFFFFF; margin-bottom: 1.25rem;">Make a Referral</h2>
+            <p style="font-size: var(--font-size-base); color: var(--color-text-on-dark-muted); line-height: 1.8; margin-bottom: var(--space-xl); max-width: 480px;">
+              To refer a client or to discuss whether Resilia would be the right fit, please reach out by phone or email.
+            </p>
+
+            <div class="referral-contact-details">
+              <div>
+                <div class="referral-contact-name">Rutuja Aughade</div>
+                <div class="referral-contact-role" style="margin-top: 0.35rem;">Psychologist (Clinical &amp; Counselling) | Facilitator</div>
+              </div>
+
+              <div class="referral-contact-links">
+                <a href="mailto:resilia.the.resilience@gmail.com" class="referral-contact-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                  resilia.the.resilience@gmail.com
+                </a>
+                <a href="tel:+919892589501" class="referral-contact-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.48 2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.87a16 16 0 0 0 6.29 6.29l1.77-1.77a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  +91 9892589501
+                </a>
+              </div>
+
+              <div style="margin-top: var(--space-sm);">
+                <a href="contact.html" class="btn btn-ivory">Professional Enquiry</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: glass panel with supporting note -->
+          <div class="referral-contact-aside fade-in-up delay-2">
+            <img src="assets/images/resilia-emblem-white.png" alt="Resilia Emblem" style="width: 56px; height: 56px; object-fit: contain; opacity: 0.55;" aria-hidden="true">
+            <p>
+              Resilia works collaboratively with referring professionals to ensure that care is coordinated and in the best interest of the individual. We welcome enquiries from any health or allied health professional.
+            </p>
+            <p>
+              Following an initial consultation, a summary letter can be provided to the referring professional with the individual's consent.
+            </p>
+            <p style="font-family: var(--font-serif); font-style: italic; font-size: var(--font-size-md); color: var(--color-ivory); opacity: 0.75;">
+              The journey of nurturing resilience.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img src="assets/images/resilia-lockup-white.png" alt="RESILIA - The journey of nurturing resilience." class="footer-logo-img">
+          <div class="footer-tagline">The journey of nurturing resilience.</div>
+          <p class="footer-desc">
+            A psychology and wellbeing practice centred on empathy, individuality, meaningful human connection and the journey of nurturing resilience.
+          </p>
+          <nav class="footer-social-links" aria-label="Social media links">
+            <a href="https://www.linkedin.com/in/rutuja-aughade-58b7b4223" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.3 9.5h3.8v11.2H3.3V9.5Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.7v5.9h-3.8v-5.2c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.3H9.4V9.5Z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/resilia.the.resilience/" target="_blank" rel="noopener noreferrer" aria-label="Resilia on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2.5h9.6a4.7 4.7 0 0 1 4.7 4.7v9.6a4.7 4.7 0 0 1-4.7 4.7H7.2a4.7 4.7 0 0 1-4.7-4.7V7.2a4.7 4.7 0 0 1 4.7-4.7Zm0 2A2.7 2.7 0 0 0 4.5 7.2v9.6a2.7 2.7 0 0 0 2.7 2.7h9.6a2.7 2.7 0 0 0 2.7-2.7V7.2a2.7 2.7 0 0 0-2.7-2.7H7.2Zm4.8 2.4a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2Zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.3-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+            </a>            <a href="https://wa.me/919892589501" target="_blank" rel="noopener noreferrer" aria-label="Chat with Resilia on WhatsApp at +91 9892589501" title="WhatsApp chat">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.3L3 20l1.1-4.7a8.4 8.4 0 1 1 16.3-3.6Z"/><path d="M8.3 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5 0 .3-.1 1.1-.7 1.6-.5.5-1.2.7-1.8.6-.6-.1-1.3-.3-2.2-.8-1.3-.7-2.4-1.8-3.2-3.1-.5-.9-.8-1.8-.7-2.5.1-.6.6-1.1 1-1.2Z"/></svg>
+            </a>
+            <a href="https://substack.com/@rutujaaughade" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on Substack" title="Substack">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v2H4V3Zm0 4h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Navigation
+          </h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="assessments.html">Assessments</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="referrals.html">Referrals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="book.html">Book an Appointment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Contact
+          </h4>
+          <p class="footer-desc" style="margin-bottom: 0.75rem;">
+            <a href="mailto:resilia.the.resilience@gmail.com" style="color: var(--color-ivory);">resilia.the.resilience@gmail.com</a><br>
+            <a href="tel:+919892589501" style="color: var(--color-ivory);">+91 9892589501</a>
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="book.html" class="btn btn-outline-white btn-sm">Book an Appointment</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 RESILIA. All rights reserved. | Rutuja Aughade, Psychologist (Clinical &amp; Counselling) | Facilitator
+        </div>
+        <div style="display: flex; gap: 1.5rem; font-size: var(--font-size-xs);">
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Privacy Policy</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Consent</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/resilia.js?v=indian-mobile-validation"></script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshops & Psychoeducation | RESILIA</title>
+  <meta name="description" content="Resilia workshops and psychoeducation sessions build psychological literacy — helping individuals, families and organisations understand mental health, emotional wellbeing and resilience.">
+  <meta name="theme-color" content="#143564">
+
+  <link rel="icon" type="image/png" href="assets/images/resilia-emblem-primary.png">
+  <link rel="stylesheet" href="assets/css/resilia.css">
+
+  <style>
+    /* ============================================================
+       WORKSHOPS PAGE — LOCAL STYLES
+       ============================================================ */
+
+    /* --- Page Hero (inner-page variant) --- */
+    .page-hero {
+      background: radial-gradient(circle at 80% 25%, rgba(62, 89, 108, 0.4) 0%, transparent 55%),
+                  linear-gradient(135deg, #0B2142 0%, #143564 45%, #204E8A 80%, #3E72B0 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;
+      color: var(--color-text-on-dark);
+      padding-top: clamp(7.5rem, 6rem + 5vw, 10.5rem);
+      padding-bottom: clamp(4rem, 3rem + 3vw, 6.5rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/images/support-connection.jpg");
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: clamp(2.5rem, 2rem + 4vw, 5.5rem);
+    }
+
+    .page-hero-content .eyebrow {
+      color: var(--color-ivory);
+    }
+    .page-hero-content .eyebrow::before {
+      background-color: var(--color-ivory);
+    }
+
+    .page-hero-title {
+      font-size: var(--font-size-3xl);
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 1.1;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+
+    .page-hero-lead {
+      font-size: var(--font-size-md);
+      color: var(--color-text-on-dark-muted);
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    /* Hero image frame (right col) */
+    .page-hero-image-frame {
+      border-radius: 36px 10px 36px 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow-elevated);
+      aspect-ratio: 4 / 4.2;
+      background: var(--color-primary-deep);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .page-hero-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* --- Intro prose section --- */
+    .intro-prose-wrapper {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .intro-prose-wrapper h2 {
+      margin-bottom: var(--space-lg);
+    }
+
+    .intro-prose-wrapper p {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.15rem;
+    }
+
+    .intro-prose-wrapper p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-prose-divider {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--color-primary);
+      opacity: 0.35;
+      margin: var(--space-xl) 0;
+    }
+
+    /* --- Workshop Topics chips (enhanced) --- */
+    .workshop-topics-section {
+      text-align: center;
+    }
+
+    .section-header-centred {
+      max-width: var(--max-width-narrow);
+      margin: 0 auto var(--space-2xl) auto;
+    }
+
+    .section-header-centred h2 {
+      margin-bottom: 0.85rem;
+    }
+
+    .topics-chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      max-width: 900px;
+      margin: 0 auto var(--space-lg) auto;
+    }
+
+    .workshop-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-pill);
+      background: #FFFFFF;
+      border: 1px solid transparent;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--color-primary-deep);
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .workshop-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Alternating sage / terracotta accent borders */
+    .workshop-chip:nth-child(odd) {
+      border-color: rgba(108, 130, 118, 0.38);  /* sage */
+    }
+    .workshop-chip:nth-child(odd):hover {
+      border-color: var(--color-sage);
+      background: var(--color-sage-light);
+    }
+    .workshop-chip:nth-child(even) {
+      border-color: rgba(181, 128, 108, 0.35);  /* terracotta */
+    }
+    .workshop-chip:nth-child(even):hover {
+      border-color: var(--color-terracotta);
+      background: rgba(181, 128, 108, 0.07);
+    }
+
+    .workshop-chip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .workshop-chip:nth-child(odd) .workshop-chip-dot {
+      background: var(--color-sage);
+    }
+    .workshop-chip:nth-child(even) .workshop-chip-dot {
+      background: var(--color-terracotta);
+    }
+
+    .topics-note {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-style: italic;
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* --- Format Cards (3-column) --- */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: var(--space-2xl);
+    }
+
+    .format-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(62, 89, 108, 0.1);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
+    }
+
+    .format-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-card);
+      border-color: var(--color-sage);
+    }
+
+    .format-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--color-sage-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .format-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--color-sage);
+    }
+
+    .format-card-label {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .format-card-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-lg);
+      font-weight: 500;
+      color: var(--color-primary-deep);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    .format-card-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    /* --- Coming Soon Card (elegant) --- */
+    .upcoming-wrapper {
+      max-width: 740px;
+      margin: var(--space-2xl) auto 0 auto;
+    }
+
+    .coming-soon-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(62, 89, 108, 0.13);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle botanical top-stripe accent */
+    .coming-soon-card::before {
+      content: "";
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-sage) 0%, var(--color-terracotta) 50%, var(--color-primary-light) 100%);
+    }
+
+    .coming-soon-card-inner {
+      padding: clamp(2.5rem, 2rem + 3vw, 4rem) clamp(2rem, 1.5rem + 3vw, 3.5rem);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    /* Botanical ornament column */
+    .cs-ornament {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .cs-ornament-circle {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-sage-light) 0%, rgba(181, 128, 108, 0.12) 100%);
+      border: 1px solid rgba(108, 130, 118, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-ornament-circle svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .cs-ornament-line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, rgba(108, 130, 118, 0.4), transparent);
+    }
+
+    /* Coming soon text content */
+    .cs-content-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-sage-light);
+      border: 1px solid rgba(108, 130, 118, 0.3);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-sage);
+      margin-bottom: var(--space-md);
+    }
+
+    .cs-content-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-sage);
+      animation: cs-pulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes cs-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .cs-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      color: var(--color-primary-deep);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-body {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* --- Enquiry Band (deep blue) --- */
+    .enquiry-band {
+      text-align: center;
+    }
+
+    .enquiry-band h2 {
+      color: #FFFFFF;
+      max-width: 680px;
+      margin: 0 auto var(--space-md) auto;
+    }
+
+    .enquiry-band p {
+      color: var(--color-text-on-dark-muted);
+      font-size: var(--font-size-base);
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 0 auto var(--space-xl) auto;
+    }
+
+    /* --- Final CTA Section --- */
+    .workshops-final-cta {
+      text-align: center;
+    }
+
+    .workshops-final-cta h2 {
+      margin-bottom: var(--space-md);
+    }
+
+    .workshops-final-cta .text-lead {
+      max-width: 640px;
+      margin: 0 auto var(--space-xl) auto;
+    }
+
+    .cta-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+    }
+
+    /* --- Decorative ornament top-right in hero --- */
+    .hero-bg-ornament {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: clamp(220px, 28vw, 380px);
+      height: clamp(220px, 28vw, 380px);
+      border-radius: 50%;
+      border: 1px solid rgba(236, 227, 222, 0.07);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(35%, -35%);
+    }
+
+    .hero-bg-ornament-2 {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(236, 227, 222, 0.05);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Responsive overrides */
+    @media (max-width: 1024px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-image-frame { max-width: 500px; margin: 0 auto; aspect-ratio: 4 / 3; }
+      .formats-grid { grid-template-columns: 1fr; max-width: 540px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 768px) {
+      .coming-soon-card-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .cs-ornament { flex-direction: row; gap: 0.85rem; }
+      .cs-ornament-line { display: none; }
+      .formats-grid { max-width: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/site-refresh.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER & PUBLIC NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="RESILIA Home">
+        <img src="assets/images/resilia-lockup-primary.png" alt="RESILIA — The journey of nurturing resilience." class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Public navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="assessments.html" class="nav-link">Assessments</a>
+        <a href="workshops.html" class="nav-link active" aria-current="page">Workshops</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="referrals.html" class="nav-link">Referrals</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="book.html" class="btn btn-ivory btn-sm">Book an Appointment</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         01 — PAGE HERO
+         ========================================================================== -->
+    <section class="page-hero" aria-labelledby="page-hero-title">
+      <!-- Decorative rings -->
+      <div class="hero-bg-ornament" aria-hidden="true"></div>
+      <div class="hero-bg-ornament-2" aria-hidden="true"></div>
+
+      <div class="container page-hero-inner">
+        <div class="page-hero-content">
+          <div class="eyebrow fade-in-up">WORKSHOPS &amp; PSYCHOEDUCATION</div>
+
+          <h1 id="page-hero-title" class="page-hero-title fade-in-up delay-1">
+            Workshops &amp;<br>Psychoeducation
+          </h1>
+
+          <p class="page-hero-lead fade-in-up delay-2">
+            Resilia aims to create accessible psychological education around topics relevant to everyday emotional wellbeing.
+          </p>
+        </div>
+
+        <div class="fade-in-up delay-2">
+          <div class="page-hero-image-frame">
+            <img
+              src="assets/images/workshop-gathering.jpg"
+              alt="A group gathered for a community workshop and shared learning"
+              width="2400"
+              height="1600"
+              loading="eager"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02 — INTRODUCTION
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="intro-heading">
+      <div class="container">
+        <div class="intro-prose-wrapper fade-in-up">
+          <h2 id="intro-heading">Bringing psychology into everyday life.</h2>
+
+          <span class="intro-prose-divider" aria-hidden="true"></span>
+
+          <p>
+            Workshops and psychoeducation sessions at Resilia are designed to build psychological literacy — helping individuals, families and organisations better understand mental health, emotional wellbeing and the tools that support a more resilient life.
+          </p>
+          <p>
+            Sessions are facilitated by Rutuja Aughade, Psychologist (Clinical &amp; Counselling) | Facilitator — and are tailored for the audience, setting and purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03 — WORKSHOP TOPICS
+         ========================================================================== -->
+    <section class="section-padding bg-linen workshop-topics-section" aria-labelledby="topics-heading">
+      <div class="container">
+        <div class="section-header-centred fade-in-up">
+          <div class="eyebrow">AREAS OF FOCUS</div>
+          <h2 id="topics-heading">Workshop Topics</h2>
+          <p class="text-lead" style="margin-top: 0.5rem;">
+            Resilia workshops cover a range of themes relevant to psychological wellbeing, emotional health and resilience.
+          </p>
+        </div>
+
+        <div class="topics-chip-grid fade-in-up delay-1" role="list" aria-label="Workshop topic areas">
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Stress &amp; Anxiety Management
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Emotional Regulation
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Mindfulness &amp; Psychological Wellbeing
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Grief &amp; Loss
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Resilience Building
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Adolescent Mental Health
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Parenting &amp; Child Development
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Relationships &amp; Communication
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Self-Compassion &amp; Identity
+          </span>
+          <span class="workshop-chip" role="listitem">
+            <span class="workshop-chip-dot" aria-hidden="true"></span>
+            Workplace Wellbeing
+          </span>
+        </div>
+
+        <p class="topics-note fade-in-up delay-2">
+          Topics are illustrative. Workshop content is tailored to the group and context. Enquire for bespoke sessions.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04 — WORKSHOP FORMATS
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="formats-heading">
+      <div class="container">
+        <div class="section-header-centred fade-in-up">
+          <div class="eyebrow">HOW WE WORK</div>
+          <h2 id="formats-heading">Workshop Formats</h2>
+        </div>
+
+        <div class="formats-grid">
+
+          <!-- Format 1: Individual & Group -->
+          <article class="format-card fade-in-up delay-1">
+            <div class="format-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="7" r="3"></circle>
+                <circle cx="17" cy="9" r="2.2"></circle>
+                <path d="M3 20c0-3.3 2.7-6 6-6h3"></path>
+                <path d="M15 20c0-2.2 1.6-4 4-4"></path>
+              </svg>
+            </div>
+            <div class="format-card-label">Individual &amp; Group Sessions</div>
+            <h3 class="format-card-title">Individual &amp; Group Sessions</h3>
+            <p class="format-card-desc">
+              Intimate, facilitated sessions for individuals or small groups. A space for shared learning, reflection and connection.
+            </p>
+          </article>
+
+          <!-- Format 2: Organisational & Corporate -->
+          <article class="format-card fade-in-up delay-2">
+            <div class="format-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
+                <line x1="12" y1="12" x2="12" y2="12.01"></line>
+                <path d="M2 12h20"></path>
+              </svg>
+            </div>
+            <div class="format-card-label">Organisational &amp; Corporate</div>
+            <h3 class="format-card-title">Organisational &amp; Corporate</h3>
+            <p class="format-card-desc">
+              Workshops and wellbeing sessions designed for workplace teams, organisations and institutions. Tailored to the audience and context.
+            </p>
+          </article>
+
+          <!-- Format 3: School & Educational Settings -->
+          <article class="format-card fade-in-up delay-3">
+            <div class="format-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 2 9 2 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="format-card-label">School &amp; Educational Settings</div>
+            <h3 class="format-card-title">School &amp; Educational Settings</h3>
+            <p class="format-card-desc">
+              Psychoeducation sessions for schools, colleges and educational communities — for students, parents and staff.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05 — UPCOMING WORKSHOPS (Coming Soon — elegant placeholder)
+         ========================================================================== -->
+    <section class="section-padding bg-linen" aria-labelledby="upcoming-heading">
+      <div class="container">
+        <div class="section-header-centred fade-in-up">
+          <div class="eyebrow">UPCOMING</div>
+          <h2 id="upcoming-heading">Upcoming Workshops</h2>
+        </div>
+
+        <div class="upcoming-wrapper fade-in-up delay-1">
+          <div class="coming-soon-card" role="region" aria-label="Workshop schedule announcement">
+
+            <!-- Gradient top stripe rendered via ::before -->
+            <div class="coming-soon-card-inner">
+
+              <!-- Botanical ornament -->
+              <div class="cs-ornament" aria-hidden="true">
+                <div class="cs-ornament-circle">
+                  <!-- Leaf / botanical SVG ornament -->
+                  <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 32 C18 32 6 24 6 14 A12 12 0 0 1 18 4 A12 12 0 0 1 30 14 C30 24 18 32 18 32Z"
+                          fill="rgba(108,130,118,0.18)" stroke="var(--color-sage)" stroke-width="1.2"/>
+                    <path d="M18 32 L18 12" stroke="var(--color-sage)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+                    <path d="M18 20 C14 17 10 18 8 16" stroke="var(--color-sage)" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M18 24 C22 21 26 22 28 20" stroke="var(--color-sage)" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/>
+                  </svg>
+                </div>
+                <div class="cs-ornament-line"></div>
+              </div>
+
+              <!-- Text content -->
+              <div class="cs-content">
+                <div class="cs-content-badge">
+                  <span class="cs-content-badge-dot" aria-hidden="true"></span>
+                  Upcoming
+                </div>
+
+                <h3 class="cs-title">Workshop Schedule Coming Soon</h3>
+
+                <p class="cs-body">
+                  Resilia workshops and psychoeducation sessions will be announced here. Follow along or get in touch to express interest or enquire about a bespoke session for your organisation or group.
+                </p>
+
+                <a href="contact.html" class="btn btn-primary">Express Interest</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06 — ENQUIRY SECTION (deep blue)
+         ========================================================================== -->
+    <section class="section-padding bg-deep-blue enquiry-band" aria-labelledby="enquiry-heading">
+      <div class="container">
+        <div class="fade-in-up">
+          <div class="eyebrow eyebrow-on-dark" style="justify-content: center;">WORKSHOP ENQUIRIES</div>
+          <h2 id="enquiry-heading">
+            Interested in a workshop for your team or organisation?
+          </h2>
+          <p>
+            Resilia offers bespoke workshops for organisations, schools, community groups and corporate teams. Get in touch to discuss your requirements.
+          </p>
+          <a href="contact.html" class="btn btn-ivory">Workshop Enquiry</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07 — FINAL CTA
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm workshops-final-cta" aria-labelledby="final-cta-heading">
+      <div class="container">
+        <div class="fade-in-up">
+          <h2 id="final-cta-heading">Ready to take the first step?</h2>
+          <p class="text-lead">
+            Whether you are looking for psychological support, assessment, professional referral information or a workshop enquiry, you can reach out to Resilia.
+          </p>
+          <div class="cta-btn-row">
+            <a href="book.html" class="btn btn-primary">Book an Appointment</a>
+            <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img src="assets/images/resilia-lockup-white.png" alt="RESILIA — The journey of nurturing resilience." class="footer-logo-img" style="height: 38px; width: auto; margin-bottom: 1rem;">
+          <div class="footer-tagline" style="font-family: var(--font-serif); font-style: italic; font-size: var(--font-size-sm); color: var(--color-text-on-dark-muted); margin-bottom: 1rem;">The journey of nurturing resilience.</div>
+          <p class="footer-desc" style="font-size: var(--font-size-sm); color: var(--color-text-on-dark-muted); line-height: 1.75; max-width: 320px;">
+            A psychology and wellbeing practice centred on empathy, individuality, meaningful human connection and the journey of nurturing resilience.
+          </p>
+          <nav class="footer-social-links" aria-label="Social media links">
+            <a href="https://www.linkedin.com/in/rutuja-aughade-58b7b4223" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.3 9.5h3.8v11.2H3.3V9.5Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.7v5.9h-3.8v-5.2c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.3H9.4V9.5Z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/resilia.the.resilience/" target="_blank" rel="noopener noreferrer" aria-label="Resilia on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2.5h9.6a4.7 4.7 0 0 1 4.7 4.7v9.6a4.7 4.7 0 0 1-4.7 4.7H7.2a4.7 4.7 0 0 1-4.7-4.7V7.2a4.7 4.7 0 0 1 4.7-4.7Zm0 2A2.7 2.7 0 0 0 4.5 7.2v9.6a2.7 2.7 0 0 0 2.7 2.7h9.6a2.7 2.7 0 0 0 2.7-2.7V7.2a2.7 2.7 0 0 0-2.7-2.7H7.2Zm4.8 2.4a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2Zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.3-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+            </a>            <a href="https://wa.me/919892589501" target="_blank" rel="noopener noreferrer" aria-label="Chat with Resilia on WhatsApp at +91 9892589501" title="WhatsApp chat">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.3L3 20l1.1-4.7a8.4 8.4 0 1 1 16.3-3.6Z"/><path d="M8.3 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5 0 .3-.1 1.1-.7 1.6-.5.5-1.2.7-1.8.6-.6-.1-1.3-.3-2.2-.8-1.3-.7-2.4-1.8-3.2-3.1-.5-.9-.8-1.8-.7-2.5.1-.6.6-1.1 1-1.2Z"/></svg>
+            </a>
+            <a href="https://substack.com/@rutujaaughade" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on Substack" title="Substack">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v2H4V3Zm0 4h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Navigation
+          </h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="assessments.html">Assessments</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="referrals.html">Referrals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="book.html">Book an Appointment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Contact
+          </h4>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-on-dark-muted); line-height: 1.8; margin-bottom: 0.75rem;">
+            <a href="mailto:resilia.the.resilience@gmail.com" style="color: var(--color-ivory);">resilia.the.resilience@gmail.com</a><br>
+            <a href="tel:+919892589501" style="color: var(--color-ivory);">+91 9892589501</a>
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="book.html" class="btn btn-outline-white btn-sm">Book an Appointment</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 RESILIA. All rights reserved. | Rutuja Aughade, Psychologist (Clinical &amp; Counselling) | Facilitator
+        </div>
+        <div style="display: flex; gap: 1.5rem; font-size: var(--font-size-xs);">
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Privacy Policy</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Consent</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/resilia.js?v=indian-mobile-validation"></script>
+</body>
+</html>
+
+
+
+
+
+

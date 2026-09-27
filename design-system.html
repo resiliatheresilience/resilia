@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESILIA | Brand Design System &amp; Visual Identity</title>
+  <meta name="description" content="Official design system documentation for RESILIA: brand tokens, typography scale, color palette, logo usage, and component standards.">
+  <meta name="theme-color" content="#204E8A">
+
+  <link rel="icon" type="image/png" href="assets/images/resilia-emblem-primary.png">
+  <link rel="stylesheet" href="assets/css/resilia.css">
+
+  <style>
+    .ds-header {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      padding: clamp(6rem, 5rem + 4vw, 8rem) 0 4rem 0;
+      position: relative;
+    }
+
+    .ds-nav {
+      position: sticky;
+      top: 70px;
+      z-index: 99;
+      background: rgba(248, 245, 242, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(62, 89, 108, 0.1);
+      padding: 0.85rem 0;
+    }
+
+    .ds-nav-list {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      list-style: none;
+      scrollbar-width: none;
+    }
+
+    .ds-nav-list::-webkit-scrollbar { display: none; }
+
+    .ds-nav-item a {
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .ds-nav-item a:hover {
+      color: var(--color-primary);
+      background: rgba(62, 89, 108, 0.06);
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: var(--font-size-sm);
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(62, 89, 108, 0.1);
+    }
+
+    .spec-table th, .spec-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(62, 89, 108, 0.08);
+    }
+
+    .spec-table th {
+      background: var(--color-ivory-warm);
+      font-weight: 600;
+      color: var(--color-primary-deep);
+      text-transform: uppercase;
+      font-size: var(--font-size-xs);
+      letter-spacing: 0.06em;
+    }
+
+    .logo-spec-card {
+      border: 1px solid rgba(62, 89, 108, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .logo-spec-card:hover {
+      box-shadow: var(--shadow-card);
+    }
+
+    .logo-spec-card img {
+      max-height: 80px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 1.25rem;
+    }
+
+    .logo-spec-desc {
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .type-specimen-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(62, 89, 108, 0.1);
+      align-items: baseline;
+    }
+
+    @media (max-width: 768px) {
+      .type-specimen-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/site-refresh.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="RESILIA Home">
+        <img src="assets/images/resilia-lockup-primary.png" alt="RESILIA - Journey of nurturing Resilience" class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link">&larr; Back to Website</a>
+        <a href="#brand" class="nav-link">Brand Identity</a>
+        <a href="#logos" class="nav-link">Logos</a>
+        <a href="#colors" class="nav-link">Color Tokens</a>
+        <a href="#typography" class="nav-link">Typography</a>
+        <a href="#components" class="nav-link">Components</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html#contact" class="btn btn-primary btn-sm">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Design System Header Banner -->
+  <section class="ds-header" id="brand">
+    <div class="container">
+      <div class="eyebrow" style="color: var(--color-ivory);">Brand Identity &amp; System Standards</div>
+      <h1 class="font-display" style="color: #FFFFFF; margin-bottom: 0.5rem;">
+        RESILIA Design System
+      </h1>
+      <p style="font-family: var(--font-serif); font-size: var(--font-size-xl); font-style: italic; color: var(--color-ivory); margin-bottom: 1.25rem;">
+        “Journey of nurturing Resilience”
+      </p>
+      <div style="font-family: var(--font-sans); font-size: var(--font-size-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-ivory-dark); margin-bottom: 1.5rem;">
+        Compassionate Support. Evidence-Based Care. Lasting Change.
+      </div>
+      <p style="max-width: 680px; font-size: var(--font-size-base); color: var(--color-text-on-dark-muted); line-height: 1.8;">
+        The visual identity for Resilia establishes a calm, safe, human, and sophisticated presence. It communicates trust and emotional safety without resorting to sterile hospital tropes, medical cliches, or generic templates.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky In-Page Navigation Bar -->
+  <nav class="ds-nav" aria-label="Design System Navigation">
+    <div class="container">
+      <ul class="ds-nav-list">
+        <li class="ds-nav-item"><a href="#brand-pillars">Brand Principles</a></li>
+        <li class="ds-nav-item"><a href="#logos">Logo Assets</a></li>
+        <li class="ds-nav-item"><a href="#colors">Color Tokens</a></li>
+        <li class="ds-nav-item"><a href="#typography">Typography</a></li>
+        <li class="ds-nav-item"><a href="#components">UI Components</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 3rem; padding-bottom: 6rem;">
+
+    <!-- 1. BRAND FOUNDATIONS -->
+    <section id="brand-pillars" class="section-padding" style="padding-top: 2rem;">
+      <div class="eyebrow">01 / Ethos</div>
+      <h2>Core Brand Attributes</h2>
+      <p class="text-lead" style="margin-bottom: 2.5rem;">
+        Six pillars that govern every visual and interactive decision across Resilia touchpoints.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-text">Experienced and trained clinical psychologist</div>
+        </div>
+        <div class="why-card">
+          <div class="why-text">Compassionate, client-centred approach</div>
+        </div>
+        <div class="why-card">
+          <div class="why-text">Safe and confidential space</div>
+        </div>
+        <div class="why-card">
+          <div class="why-text">Evidence-based therapeutic methods</div>
+        </div>
+        <div class="why-card">
+          <div class="why-text">Support for all age groups</div>
+        </div>
+        <div class="why-card">
+          <div class="why-text">Focus on long-term well-being and resilience</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. OFFICIAL LOGOS -->
+    <section id="logos" class="section-padding" style="border-top: 1px solid rgba(62, 89, 108, 0.1);">
+      <div class="eyebrow">02 / Identity Assets</div>
+      <h2>Official Resilia Logo Marks</h2>
+      <p class="text-lead" style="margin-bottom: 2.5rem;">
+        The Resilia brand mark integrates the classical Greek letter <strong>&Psi; (Psi)</strong>—universal emblem of the psyche—blooming like a botanical lotus within the sweeping grace of an architectural <strong>R</strong>.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; margin-bottom: 3rem;">
+        <div class="logo-spec-card" style="background: var(--color-linen);">
+          <img src="assets/images/resilia-lockup-primary.png" alt="Resilia Primary Horizontal Lockup">
+          <div class="logo-spec-desc" style="color: var(--color-primary-deep);">
+            <strong>Horizontal Lockup (Primary Blue-Grey)</strong><br>
+            Primary navigation headers, light backgrounds
+          </div>
+        </div>
+
+        <div class="logo-spec-card" style="background: var(--color-primary-deep);">
+          <img src="assets/images/resilia-lockup-ivory.png" alt="Resilia Ivory Horizontal Lockup">
+          <div class="logo-spec-desc" style="color: var(--color-ivory);">
+            <strong>Horizontal Lockup (Warm Ivory)</strong><br>
+            Footers, dark slates, deep contrast areas
+          </div>
+        </div>
+
+        <div class="logo-spec-card" style="background: #FFFFFF;">
+          <img src="assets/images/resilia-emblem-primary.png" alt="Resilia Botanical Emblem Primary" style="max-height: 90px;">
+          <div class="logo-spec-desc" style="color: var(--color-primary-deep);">
+            <strong>Emblem Mark (Primary Blue-Grey)</strong><br>
+            Favicon, app icons, floating badges
+          </div>
+        </div>
+
+        <div class="logo-spec-card" style="background: var(--color-primary-deep);">
+          <img src="assets/images/resilia-emblem-ivory.png" alt="Resilia Botanical Emblem Ivory" style="max-height: 90px;">
+          <div class="logo-spec-desc" style="color: var(--color-ivory);">
+            <strong>Emblem Mark (Warm Ivory)</strong><br>
+            Seals, dark badges, dividers
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COLOR SYSTEM -->
+    <section id="colors" class="section-padding" style="border-top: 1px solid rgba(62, 89, 108, 0.1);">
+      <div class="eyebrow">03 / Palette</div>
+      <h2>Color Tokens &amp; Roles</h2>
+      <p class="text-lead" style="margin-bottom: 2.5rem;">
+        A calming palette dominated by <strong>Blue-Grey + Warm Ivory + Soft Linen</strong>, with subtle botanical sage and warm terracotta as gentle accents only.
+      </p>
+
+      <div class="palette-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem;">
+        <div class="swatch-card" style="border: 1px solid rgba(62,89,108,0.12); border-radius: var(--radius-md); overflow: hidden; background: #fff;">
+          <div style="height: 80px; background-color: #3E596C;"></div>
+          <div style="padding: 1rem;">
+            <strong>Primary Blue-Grey</strong><br>
+            <code>#3E596C</code>
+          </div>
+        </div>
+
+        <div class="swatch-card" style="border: 1px solid rgba(62,89,108,0.12); border-radius: var(--radius-md); overflow: hidden; background: #fff;">
+          <div style="height: 80px; background: linear-gradient(135deg, rgba(11, 33, 66, 0.95) 0%, rgba(20, 53, 100, 0.9) 50%, rgba(62, 114, 176, 0.85) 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;"></div>
+          <div style="padding: 1rem;">
+            <strong>Deep Slate</strong><br>
+            <code>#2A3D4B</code>
+          </div>
+        </div>
+
+        <div class="swatch-card" style="border: 1px solid rgba(62,89,108,0.12); border-radius: var(--radius-md); overflow: hidden; background: #fff;">
+          <div style="height: 80px; background-color: #ECE3DE;"></div>
+          <div style="padding: 1rem;">
+            <strong>Warm Ivory</strong><br>
+            <code>#ECE3DE</code>
+          </div>
+        </div>
+
+        <div class="swatch-card" style="border: 1px solid rgba(62,89,108,0.12); border-radius: var(--radius-md); overflow: hidden; background: #fff;">
+          <div style="height: 80px; background-color: #F8F5F2; border-bottom: 1px solid #ECE3DE;"></div>
+          <div style="padding: 1rem;">
+            <strong>Soft Linen</strong><br>
+            <code>#F8F5F2</code>
+          </div>
+        </div>
+
+        <div class="swatch-card" style="border: 1px solid rgba(62,89,108,0.12); border-radius: var(--radius-md); overflow: hidden; background: #fff;">
+          <div style="height: 80px; background-color: #6C8276;"></div>
+          <div style="padding: 1rem;">
+            <strong>Botanical Sage</strong><br>
+            <code>#6C8276</code>
+          </div>
+        </div>
+
+        <div class="swatch-card" style="border: 1px solid rgba(62,89,108,0.12); border-radius: var(--radius-md); overflow: hidden; background: #fff;">
+          <div style="height: 80px; background-color: #B5806C;"></div>
+          <div style="padding: 1rem;">
+            <strong>Warm Terracotta</strong><br>
+            <code>#B5806C</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TYPOGRAPHY -->
+    <section id="typography" class="section-padding" style="border-top: 1px solid rgba(62, 89, 108, 0.1);">
+      <div class="eyebrow">04 / Typographic Pairing</div>
+      <h2>Editorial &amp; UI Fonts</h2>
+      <p class="text-lead" style="margin-bottom: 2.5rem;">
+        <strong>Cormorant Garamond</strong> for display headers and editorial poise, paired with <strong>Montserrat</strong> for modern interface clarity.
+      </p>
+
+      <div style="background: #FFFFFF; border-radius: var(--radius-lg); border: 1px solid rgba(62, 89, 108, 0.1); padding: 1.5rem 2.5rem;">
+        <div class="type-specimen-row">
+          <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            <strong>Display</strong><br>
+            <code>Cormorant Garamond</code>
+          </div>
+          <div class="font-display">Compassionate Support.</div>
+        </div>
+
+        <div class="type-specimen-row">
+          <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            <strong>Section Heading</strong><br>
+            <code>Cormorant Garamond 500</code>
+          </div>
+          <h2>Our Therapeutic Services</h2>
+        </div>
+
+        <div class="type-specimen-row">
+          <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            <strong>Body Copy</strong><br>
+            <code>Montserrat 400</code>
+          </div>
+          <p>
+            At RESILIA, we provide a safe, empathetic and non-judgmental space for individuals, children, couples and families to explore, heal and grow.
+          </p>
+        </div>
+
+        <div class="type-specimen-row">
+          <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+            <strong>UI Eyebrow</strong><br>
+            <code>Montserrat 600 Uppercase</code>
+          </div>
+          <div class="eyebrow" style="margin-bottom: 0;">01 / Welcome to Resilia</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMPONENTS -->
+    <section id="components" class="section-padding" style="border-top: 1px solid rgba(62, 89, 108, 0.1);">
+      <div class="eyebrow">05 / UI Components</div>
+      <h2>Accessible Component Library</h2>
+
+      <div style="background: #FFFFFF; border-radius: var(--radius-lg); border: 1px solid rgba(62, 89, 108, 0.1); padding: 2.5rem;">
+        <h4 style="margin-bottom: 1.5rem;">Buttons</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 2rem;">
+          <button class="btn btn-primary">Get in Touch</button>
+          <button class="btn btn-secondary">Explore Our Services</button>
+          <button class="btn btn-outline">Inquire About Counselling</button>
+          <button class="btn btn-primary btn-sm">Small Button</button>
+        </div>
+
+        <h4 style="margin-bottom: 1.5rem;">Form Controls</h4>
+        <div style="max-width: 480px; display: flex; flex-direction: column; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Service of Interest</label>
+            <select class="form-select">
+              <option>Individual Counselling</option>
+              <option>Child &amp; Adolescent Counselling</option>
+              <option>Psychological Assessments</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container" style="text-align: center;">
+      <img src="assets/images/resilia-lockup-ivory.png" alt="RESILIA" style="height: 44px; margin: 0 auto 1.5rem auto;">
+      <p style="color: var(--color-ivory); font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; margin-bottom: 1rem;">
+        "Journey of nurturing Resilience"
+      </p>
+      <div style="font-size: var(--font-size-xs); color: var(--color-text-on-dark-muted);">
+        RESILIA Design System &bull; Rutuja Aughade, Psychologist &amp; Facilitator
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/resilia.js?v=indian-mobile-validation"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,481 @@
+/* Shared blue visual system for all RESILIA pages. Loaded after page-level styles. */
+:root {
+  --color-primary: #245A91;
+  --color-primary-deep: #173B69;
+  --color-primary-darkest: #0B2142;
+  --color-primary-light: #4E86BC;
+  --color-primary-glow: #9AC5E8;
+  --color-primary-mist: #EAF2FA;
+  --color-ivory: #EEF4FA;
+  --color-linen: #F8FBFE;
+  --color-ivory-warm: #EFF5FB;
+  --color-ivory-dark: #D9E6F2;
+  --color-sage: #477AA9;
+  --color-sage-light: #E9F2FA;
+  --color-terracotta: #4F8FD9;
+  --color-text-main: #172F49;
+  --color-text-secondary: #415C77;
+  --color-text-muted: #67809A;
+  --color-text-on-dark-muted: #D4E4F3;
+  --bg-luminous-gradient: linear-gradient(135deg, #0B2142 0%, #173B69 48%, #4E86BC 100%);
+  --shadow-subtle: 0 5px 18px rgba(19, 52, 86, 0.055);
+  --shadow-card: 0 12px 30px rgba(19, 52, 86, 0.09);
+  --shadow-elevated: 0 22px 48px rgba(11, 33, 66, 0.18);
+  --transition: all 0.28s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+html { scroll-padding-top: 6rem; }
+body { color: var(--color-text-main); background: var(--color-linen); line-height: 1.68; }
+body:not(.home-page) main { overflow: clip; }
+body:not(.home-page) .section-padding { padding-block: clamp(2.6rem, 4vw, 4.1rem); }
+body:not(.home-page) h2 { font-size: clamp(1.8rem, 2.8vw, 2.45rem); line-height: 1.13; }
+body:not(.home-page) p { max-width: 76ch; }
+body:not(.home-page) .eyebrow { color: #3477B4; margin-bottom: 0.55rem; }
+body:not(.home-page) .eyebrow::before { background: currentColor; }
+
+/* A clean white navigation capsule with the same blue action on every page. */
+.site-header { top: 1rem; padding-inline: 1rem; }
+.site-header .header-inner,
+.site-header .header-capsule {
+  max-width: 1480px;
+  min-height: 68px;
+  padding: 0.58rem 1.25rem;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(23, 59, 105, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(11, 33, 66, 0.14);
+  backdrop-filter: blur(16px);
+}
+@media (min-width: 1101px) {
+  .site-header .header-inner,
+  .site-header .header-capsule { align-items: center; }
+  .site-header .main-nav { align-items: center; margin-inline: auto; }
+}
+.site-header .brand-logo-img { height: 38px; }
+.site-header .nav-link { color: #3E5872; font-size: 0.8rem; padding: 0.45rem 0.65rem; }
+.site-header .nav-link:hover,
+.site-header .nav-link.active { color: #173B69; background: #EAF2FA; }
+.site-header .nav-link .nav-dot { color: #4E86BC; }
+.site-header .btn[href="book.html"],
+.site-header a.btn-pill-cta {
+  color: #fff;
+  background: linear-gradient(135deg, #173B69, #245A91 70%, #3477B4);
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 5px 16px rgba(23, 59, 105, 0.26);
+}
+.site-header .btn[href="book.html"]:hover,
+.site-header a.btn-pill-cta:hover { color: #fff; background: #0B2142; }
+.site-header .pill-cta-arrow { color: #173B69; }
+.site-header .mobile-nav-toggle { background: #EAF2FA; border-color: #D4E2F0; }
+.site-header .mobile-nav-toggle span { background: #173B69; }
+
+/* Give every inner page a real, readable blue hero. */
+.hero-section,
+.hero-section-services,
+.page-hero,
+.page-hero-narrow,
+.resources-hero,
+.contact-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(122deg, #0B2142 0%, #173B69 48%, #3477B4 100%);
+  padding: clamp(7.2rem, 12vh, 9rem) 0 clamp(3rem, 5vh, 4.4rem);
+}
+.hero-section::before,
+.hero-section-services::before,
+.page-hero::before,
+.page-hero-narrow::before,
+.resources-hero::before,
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(54vw, 700px);
+  aspect-ratio: 1;
+  right: -13%;
+  top: -72%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(154,197,232,0.26), rgba(154,197,232,0) 68%);
+  pointer-events: none;
+}
+.hero-section .container,
+.hero-section-services .container,
+.page-hero .container,
+.page-hero-narrow .container,
+.resources-hero .container,
+.contact-hero .container { position: relative; z-index: 1; }
+.hero-grid,
+.hero-services-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.hero-content { max-width: 650px; }
+.hero-visual-wrapper { position: relative; width: min(100%, 540px); justify-self: end; }
+.hero-section h1,
+.hero-section-services h1,
+.page-hero h1,
+.page-hero-narrow h1,
+.resources-hero h1,
+.contact-hero h1,
+.hero-section .hero-title,
+.hero-section-services .hero-services-title,
+.page-hero .page-hero-title {
+  color: #fff;
+  font-size: clamp(2.35rem, 4.2vw, 3.65rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin-block: 0.5rem 1rem;
+}
+.hero-section .hero-lead,
+.hero-section .text-lead,
+.hero-section-services .hero-services-lead,
+.page-hero .page-hero-lead,
+.page-hero-narrow .hero-lead,
+.resources-hero .hero-lead,
+.resources-hero .resources-hero-subheading,
+.contact-hero .hero-lead {
+  color: rgba(244, 249, 255, 0.88);
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  line-height: 1.7;
+}
+.hero-section .eyebrow,
+.hero-section-services .eyebrow,
+.page-hero .eyebrow,
+.page-hero-narrow .hero-eyebrow,
+.resources-hero .eyebrow,
+.contact-hero .hero-eyebrow { color: #B9D7F0; }
+.hero-section .eyebrow::before,
+.hero-section-services .eyebrow::before,
+.page-hero .eyebrow::before,
+.page-hero-narrow .hero-eyebrow::before,
+.resources-hero .eyebrow::before,
+.contact-hero .hero-eyebrow::before { background: #9AC5E8; }
+.hero-image-frame,
+.hero-services-image-frame,
+.page-hero-image-frame {
+  overflow: hidden;
+  max-height: 430px;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 24px;
+  box-shadow: 0 22px 54px rgba(4, 19, 39, 0.3);
+}
+.hero-image-frame { aspect-ratio: 16 / 10; }
+.hero-image-frame img,
+.hero-services-image-frame img,
+.page-hero-image-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero-emblem-badge { position: absolute; right: -1rem; bottom: -1rem; display: grid; place-items: center; width: 82px; height: 82px; padding: 14px; background: #fff; border: 1px solid #D9E6F2; border-radius: 50%; box-shadow: var(--shadow-card); }
+.hero-emblem-badge img { width: 100%; height: 100%; object-fit: contain; }
+.hero-section .btn-glass-hero,
+.hero-section-services .btn-glass-hero { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+/* Assessment hero: keep the counselling photo in the backdrop, without portrait or logo overlays. */
+.assessment-hero {
+  display: flex;
+  align-items: center;
+  min-height: clamp(560px, 72vh, 760px);
+  background-image:
+    linear-gradient(90deg, rgba(11,33,66,0.94) 0%, rgba(20,53,100,0.84) 45%, rgba(20,53,100,0.34) 100%),
+    linear-gradient(0deg, rgba(11,33,66,0.22), rgba(11,33,66,0.08)),
+    url("../images/assessment-session.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.assessment-hero .hero-grid { width: 100%; grid-template-columns: minmax(0, 1fr); }
+.assessment-hero .hero-content { max-width: 660px; }
+.assessment-hero .hero-tagline-badge { color: #D4E4F3; }
+.assessment-hero .hero-tagline-dot { background: #9AC5E8; }
+
+/* About hero: move the growth image out of its card and into the hero backdrop. */
+.about-hero {
+  display: flex;
+  align-items: center;
+  min-height: clamp(560px, 72vh, 760px);
+  background-image:
+    linear-gradient(90deg, rgba(11,33,66,0.94) 0%, rgba(20,53,100,0.85) 46%, rgba(20,53,100,0.34) 100%),
+    linear-gradient(0deg, rgba(11,33,66,0.2), rgba(11,33,66,0.06)),
+    url("../images/resilience-sprout.jpg");
+  background-size: cover;
+  background-position: center 54%;
+}
+.about-hero .hero-grid { width: 100%; grid-template-columns: minmax(0, 1fr); }
+.about-hero .hero-content { max-width: 680px; }
+.about-hero .hero-tagline-badge { color: #D4E4F3; }
+.about-hero .hero-tagline-dot { background: #9AC5E8; }
+
+/* Use the supplied consultation scene in the Services hero image frame. */
+.services-hero-photo .hero-services-image-frame {
+  max-height: 350px;
+  aspect-ratio: 16 / 10;
+  border-radius: 22px;
+  box-shadow: 0 20px 46px rgba(4,19,39,0.28);
+}
+.services-hero-photo .hero-services-image-frame img { object-position: center; }
+
+/* Compact, aligned content blocks and cards. */
+body:not(.home-page) .audience-card,
+body:not(.home-page) .service-card,
+body:not(.home-page) .approach-card,
+body:not(.home-page) .how-it-works-banner,
+body:not(.home-page) .about-card-box,
+body:not(.home-page) .booking-flow-card,
+body:not(.home-page) .booking-reassurance-panel,
+body:not(.home-page) .contact-card,
+body:not(.home-page) .resource-card,
+body:not(.home-page) .workshop-card,
+body:not(.home-page) .referral-card,
+body:not(.home-page) .assessment-card {
+  border-color: rgba(36, 90, 145, 0.13);
+  box-shadow: 0 8px 25px rgba(23, 59, 105, 0.07);
+  border-radius: 20px;
+}
+body:not(.home-page) .audience-card,
+body:not(.home-page) .service-card,
+body:not(.home-page) .approach-card { padding: 1.55rem; }
+body:not(.home-page) .about-card-box { padding: clamp(1.5rem, 3vw, 2.6rem); gap: clamp(1.5rem, 3vw, 2.8rem); }
+.about-photo-frame { width: 100%; min-height: 320px; aspect-ratio: 4 / 4.8; max-height: 520px; overflow: hidden; border-radius: 22px; background: #EAF2FA; box-shadow: 0 18px 42px rgba(23,59,105,0.16); }
+.about-profile-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 24%; }
+.about-intro-line { margin-bottom: 0.55rem; color: #173B69; font-family: var(--font-serif); font-size: clamp(1.2rem, 1.8vw, 1.45rem); font-weight: 600; }
+body:not(.home-page) .services-numbered-list { margin-top: 1.5rem; }
+body:not(.home-page) .service-item { grid-template-columns: 60px minmax(0, 1fr); gap: 1.1rem; padding: 1.2rem 0; border-color: rgba(36,90,145,0.16); }
+body:not(.home-page) .service-num-display { font-size: clamp(2rem, 4vw, 3rem); color: #4E86BC; opacity: 0.58; }
+body:not(.home-page) .service-item-title { font-size: clamp(1.25rem, 2vw, 1.65rem); color: #173B69; margin-bottom: 0.4rem; }
+body:not(.home-page) .service-item-desc { font-size: 0.96rem; line-height: 1.65; }
+body:not(.home-page) .how-steps-grid { gap: 1rem; margin-top: 1.6rem; }
+body:not(.home-page) .how-step-card { padding: 1.5rem; border-color: rgba(255,255,255,0.18); border-radius: 18px; }
+body:not(.home-page) .credential-badge { background: #EAF2FA; color: #173B69; border: 1px solid #D6E5F3; }
+body:not(.home-page) .bg-linen { background: #F8FBFE; }
+body:not(.home-page) .bg-ivory-warm { background: #EFF5FB; }
+.bg-deep-blue { background: linear-gradient(135deg, #0B2142 0%, #173B69 60%, #245A91 100%); }
+body:not(.home-page) .audience-quote-banner { background: #E8F1FA; border-color: #D4E3F1; }
+
+/* Appointment calls to action use the site's ocean blue with a small hover lift. */
+body:not(.home-page) a[href="book.html"].btn,
+body:not(.home-page) .hero-actions a[href="book.html"],
+body:not(.home-page) .final-cta-section a[href="book.html"],
+body:not(.home-page) .site-footer a[href="book.html"] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: linear-gradient(135deg, #173B69 0%, #245A91 65%, #3B7FBA 100%);
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 7px 18px rgba(23,59,105,0.23);
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+body:not(.home-page) a[href="book.html"].btn::after,
+body:not(.home-page) .hero-actions a[href="book.html"]::after,
+body:not(.home-page) .final-cta-section a[href="book.html"]::after,
+body:not(.home-page) .site-footer a[href="book.html"]::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -30% auto -30% -45%;
+  width: 35%;
+  transform: skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.24), transparent);
+}
+body:not(.home-page) a[href="book.html"].btn:hover,
+body:not(.home-page) .hero-actions a[href="book.html"]:hover,
+body:not(.home-page) .final-cta-section a[href="book.html"]:hover,
+body:not(.home-page) .site-footer a[href="book.html"]:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #0B2142, #245A91);
+  transform: translateY(-2px);
+  box-shadow: 0 11px 25px rgba(23,59,105,0.31);
+}
+body:not(.home-page) a[href="book.html"].btn:hover::after,
+body:not(.home-page) .hero-actions a[href="book.html"]:hover::after,
+body:not(.home-page) .final-cta-section a[href="book.html"]:hover::after,
+body:not(.home-page) .site-footer a[href="book.html"]:hover::after { animation: cta-sheen 650ms ease; }
+@keyframes cta-sheen { to { transform: translateX(470%) skewX(-20deg); } }
+
+/* Scroll reveals are already wired to IntersectionObserver in resilia.js. */
+body:not(.home-page) .fade-in-up { transition-duration: 560ms; }
+.site-footer { background: linear-gradient(180deg, #173B69 0%, #0B2142 100%); border-top-color: rgba(154,197,232,0.22); }
+.site-footer .footer-top { border-bottom-color: rgba(212,228,243,0.16); }
+.footer-social-links { display: flex; align-items: center; gap: 0.65rem; margin-top: 1rem; }
+.footer-social-links a { display: grid; width: 46px; height: 46px; place-items: center; color: #EAF2FA; background: rgba(255,255,255,0.09); border: 1px solid rgba(212,228,243,0.22); border-radius: 50%; transition: transform 180ms ease, color 180ms ease, background 180ms ease; }
+.footer-social-links a:hover { color: #173B69; background: #fff; transform: translateY(-2px); }
+.footer-social-links a:focus-visible { outline-color: #9AC5E8; }
+.footer-social-links svg { width: 22px; height: 22px; fill: currentColor; }
+a[href^="mailto:"],
+a[href^="tel:"] { font-weight: 600; }
+
+/* Keep the Workshops hero image framed to suit its wide community photo. */
+.page-hero .page-hero-inner { grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr); gap: clamp(2rem, 4vw, 4rem); }
+.page-hero .page-hero-image-frame { aspect-ratio: 4 / 3; border-radius: 26px; }
+.page-hero .page-hero-image-frame img { object-position: center 48%; }
+
+/* Referrals: consistent content widths, aligned service cards, and a balanced contact panel. */
+.referral-intro-grid { grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr); gap: clamp(2rem, 5vw, 5rem); }
+.referral-intro-grid > div:first-child { max-width: 68ch; }
+.page-hero-narrow { text-align: left; }
+.page-hero-narrow .container { max-width: var(--max-width); }
+.referral-info-copy { max-width: 880px; margin: 0; }
+.referral-services-heading { max-width: 100%; margin: 0; text-align: left; }
+.referral-emblem-visual { min-height: 280px; border-radius: 28px; background: radial-gradient(circle, rgba(78,134,188,0.12), rgba(78,134,188,0) 68%); }
+.referral-photo-visual { min-height: 0; padding: 0; background: none; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: 0 16px 38px rgba(11,33,66,0.18); }
+.referral-photo-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; filter: none; user-select: auto; pointer-events: auto; }
+.referral-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: clamp(1.8rem, 3vw, 2.8rem); }
+.referral-service-card { min-height: 180px; padding: clamp(1.4rem, 2.6vw, 2rem); border-color: rgba(36,90,145,0.14); border-radius: 22px; }
+.referral-service-card-desc { max-width: 58ch; }
+.referral-contact-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.referral-contact-details { margin-top: 1.5rem; gap: 1.15rem; }
+.referral-contact-aside { height: 100%; justify-content: center; border-color: rgba(212,228,243,0.22); padding: clamp(1.5rem, 3vw, 2.5rem); }
+.referral-contact-link { overflow-wrap: anywhere; }
+
+/* The Perspectives introduction is a single blue feature band, without a second hero strip. */
+.resources-editorial-intro {
+  padding-block: clamp(2.8rem, 5vw, 4.1rem);
+  background-image: linear-gradient(110deg, rgba(11,33,66,0.94) 0%, rgba(23,59,105,0.86) 58%, rgba(36,90,145,0.78) 100%), url("../images/perspectives-abstract.jpg");
+  background-size: cover;
+  background-position: center 48%;
+}
+.resources-editorial-intro .resources-intro-col { max-width: 760px; margin-left: 0; margin-right: auto; text-align: left; }
+.resources-editorial-intro h1 { color: #fff; font-size: clamp(2.2rem, 4vw, 3.25rem); font-weight: 700; line-height: 1.08; margin: 0.25rem 0 0.45rem; text-shadow: 0 2px 18px rgba(5,20,40,0.22); }
+.resources-editorial-intro .eyebrow { justify-content: flex-start; color: #D3E8FA; }
+.resources-editorial-intro .eyebrow::before { background: #9AC5E8; }
+.resources-editorial-tagline { color: #F0F7FD; font-family: var(--font-serif); font-size: clamp(1.2rem, 2vw, 1.55rem); font-style: italic; font-weight: 600; margin: 0 0 0.85rem; }
+.resources-editorial-intro .text-lead,
+.resources-editorial-note { color: #FFFFFF; font-weight: 500; line-height: 1.65; margin: 0; text-shadow: 0 1px 12px rgba(5,20,40,0.24); }
+.resources-editorial-intro .text-lead { font-size: clamp(0.98rem, 1.2vw, 1.1rem); }
+.resources-editorial-note { font-size: 0.96rem; margin-top: 0.7rem; }
+
+@media (max-width: 1024px) {
+  .referral-intro-grid { grid-template-columns: minmax(0, 1fr) minmax(180px, 0.55fr); }
+  .referral-emblem-visual { display: flex; min-height: 220px; padding: 0.75rem; }
+  .referral-emblem-visual img { width: clamp(150px, 22vw, 240px); }
+  .referral-photo-visual { min-height: 0; padding: 0; aspect-ratio: 16 / 10; }
+  .referral-photo-visual img { width: 100%; }
+}
+@media (max-width: 760px) {
+  .resources-editorial-intro { padding-block: 2.4rem; background-position: 40% center; }
+  .resources-editorial-intro h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
+  .resources-editorial-intro .text-lead,
+  .resources-editorial-note { font-size: 0.92rem; }
+  .page-hero .page-hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .page-hero .page-hero-image-frame { aspect-ratio: 16 / 10; }
+  .referral-intro-grid,
+  .referral-contact-inner { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .referral-emblem-visual { display: none; }
+  .referral-photo-visual { display: block; }
+  .referral-services-grid { grid-template-columns: minmax(0, 1fr); gap: 0.85rem; }
+  .referral-service-card { min-height: 0; padding: 1.25rem; }
+  .referral-contact-aside { height: auto; }
+  .referral-contact-link { font-size: 0.9rem; }
+}
+
+@media (max-width: 1100px) {
+  .site-header .header-inner { gap: 0.75rem; }
+  .site-header .main-nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+    top: 74px;
+    left: 1rem;
+    right: 1rem;
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    background: linear-gradient(160deg, rgba(23,59,105,0.98), rgba(11,33,66,0.99));
+    box-shadow: 0 18px 42px rgba(7,24,46,0.3);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .site-header .main-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .site-header .main-nav .nav-link,
+  .site-header .main-nav .nav-link.active { justify-content: flex-start; min-height: 44px; color: #EDF5FC; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.09); border-radius: 8px; }
+  .site-header .main-nav .nav-link:hover { background: rgba(255,255,255,0.1); }
+  .site-header .main-nav .nav-dot { color: #9AC5E8; }
+  .site-header .mobile-nav-toggle { display: flex; }
+  .hero-grid,
+  .hero-services-grid { grid-template-columns: minmax(0, 1fr) minmax(250px, 0.85fr); gap: 2rem; }
+  .assessment-hero .hero-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  body:not(.home-page) .section-padding { padding-block: 2.4rem; }
+  .site-header { top: 0.55rem; padding-inline: 0.7rem; }
+  .site-header .header-inner { min-height: 52px; padding: 0.4rem 0.7rem; }
+  .site-header .brand-logo-img { height: 31px; }
+  .site-header .btn[href="book.html"] { font-size: 0.72rem; padding: 0.36rem 0.75rem; }
+  .site-header .mobile-nav-toggle { width: 34px; height: 34px; }
+  .hero-section,
+  .hero-section-services,
+  .page-hero,
+  .page-hero-narrow,
+  .resources-hero,
+  .contact-hero { padding: 6.3rem 0 2.7rem; }
+  .hero-grid,
+  .hero-services-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero-section h1,
+  .hero-section-services h1,
+  .page-hero h1,
+  .page-hero-narrow h1,
+  .resources-hero h1,
+  .contact-hero h1,
+  .hero-section .hero-title,
+  .hero-section-services .hero-services-title,
+  .page-hero .page-hero-title { font-size: clamp(2rem, 8vw, 2.75rem); }
+  .assessment-hero { min-height: 590px; background-position: 58% center; }
+  .about-hero { min-height: 590px; background-position: 58% center; }
+  .hero-image-frame,
+  .hero-services-image-frame,
+  .page-hero-image-frame { width: 100%; max-height: 300px; aspect-ratio: 16 / 10; border-radius: 18px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .hero-actions .btn { width: auto; min-height: 46px; padding: 0.72rem 1rem; }
+  body:not(.home-page) .service-item { grid-template-columns: 42px minmax(0,1fr); gap: 0.8rem; padding: 1rem 0; }
+  body:not(.home-page) .service-num-display { font-size: 1.8rem; }
+  body:not(.home-page) .how-steps-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+  body:not(.home-page) .how-step-card { padding: 1.2rem; }
+  body:not(.home-page) .audience-card,
+  body:not(.home-page) .service-card,
+  body:not(.home-page) .approach-card { padding: 1.25rem; }
+  body:not(.home-page) .about-card-box { padding: 1.2rem; }
+  .about-photo-frame { min-height: 0; max-height: 460px; aspect-ratio: 4 / 4.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* One shared headline system across the home page and every inner page. */
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-family: var(--font-sans) !important;
+  letter-spacing: -0.035em !important;
+}
+body h1 {
+  font-size: clamp(2.5rem, 4.1vw, 4.25rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.06 !important;
+}
+body h2 {
+  font-size: clamp(1.9rem, 2.6vw, 2.65rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.14 !important;
+}
+body h3 {
+  font-size: clamp(1.4rem, 2vw, 1.8rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.22 !important;
+}
+body h4,
+body h5,
+body h6 {
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+@media (max-width: 760px) {
+  body h1 { font-size: clamp(2.25rem, 9vw, 3rem) !important; }
+  body h2 { font-size: clamp(1.75rem, 7vw, 2.25rem) !important; }
+}

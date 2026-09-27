@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psychological Services | RESILIA</title>
+  <meta name="description" content="Resilia offers psychological counselling and psychotherapy for individuals, children, adolescents, couples and families. Support tailored to the individual, their experiences and their needs.">
+  <meta name="theme-color" content="#143564">
+
+  <link rel="icon" type="image/png" href="assets/images/resilia-emblem-primary.png">
+  <link rel="stylesheet" href="assets/css/resilia.css">
+
+  <style>
+    /* ─── Services page–specific overrides ─────────────────────────────── */
+
+    /* Hero variant: deep blue background */
+    .hero-section-services {
+      background: linear-gradient(135deg, rgba(11, 33, 66, 0.95) 0%, rgba(20, 53, 100, 0.9) 50%, rgba(62, 114, 176, 0.85) 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;
+      padding: var(--space-4xl) 0 var(--space-3xl);
+      overflow: hidden;
+    }
+
+    .hero-services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .hero-services-content .eyebrow {
+      color: rgba(236, 227, 222, 0.6);
+    }
+
+    .hero-services-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      line-height: 1.1;
+      color: #FFFFFF;
+      margin: 0.75rem 0 1.25rem;
+    }
+
+    .hero-services-lead {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-on-dark-muted, rgba(255,255,255,0.75));
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .hero-services-image-frame {
+      border-radius: var(--radius-2xl, 1.5rem);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+    }
+
+    .hero-services-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Numbered service items (clean aligned layout) ────────────────────── */
+    .services-numbered-list {
+      margin-top: var(--space-2xl);
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: var(--space-lg);
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(62, 89, 108, 0.12);
+      align-items: start;
+    }
+
+    .service-item:first-child {
+      border-top: 1px solid rgba(62, 89, 108, 0.12);
+    }
+
+    .service-num-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 5vw, 4rem);
+      font-weight: 500;
+      line-height: 1;
+      color: var(--color-primary);
+      opacity: 0.4;
+      user-select: none;
+      padding-top: 0.1em;
+      letter-spacing: -0.02em;
+    }
+
+    .service-item-body {
+      padding-top: 0.2rem;
+    }
+
+    .service-item-label {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-primary, #3E596C);
+      margin-bottom: 0.4rem;
+    }
+
+    .service-item-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 500;
+      color: var(--color-primary-deep, #2A3D4B);
+      margin: 0 0 0.6rem;
+      line-height: 1.25;
+    }
+
+    .service-item-desc {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      max-width: 720px;
+    }
+
+    /* ── How It Works — dark section steps grid ─────────────────────────── */
+    .how-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-3xl);
+    }
+
+    .how-step-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl, 1rem);
+      padding: var(--space-2xl);
+      backdrop-filter: blur(4px);
+    }
+
+    .how-step-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--color-terracotta, #B5806C);
+      margin-bottom: 0.75rem;
+      user-select: none;
+    }
+
+    .how-step-title {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+    }
+
+    .how-step-desc {
+      font-size: var(--font-size-base);
+      color: #E2ECF2;
+      line-height: 1.75;
+      opacity: 0.95;
+    }
+
+    /* ── Assessments callout banner ─────────────────────────────────────── */
+    .assessments-callout-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-3xl);
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── Final CTA section ──────────────────────────────────────────────── */
+    .final-cta-section-services {
+      background: linear-gradient(135deg, rgba(11, 33, 66, 0.95) 0%, rgba(20, 53, 100, 0.9) 50%, rgba(62, 114, 176, 0.85) 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;
+      padding: var(--space-4xl) 0;
+      text-align: center;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-services-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-services-image-frame {
+        max-height: 340px;
+        aspect-ratio: unset;
+      }
+      .service-item {
+        grid-template-columns: 70px 1fr;
+        gap: 1.25rem;
+        padding: 1.5rem 0;
+      }
+      .how-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .assessments-callout-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .service-num-display {
+        font-size: 2.5rem;
+      }
+      .service-item {
+        grid-template-columns: 50px 1fr;
+        gap: 1rem;
+        padding: 1.25rem 0;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/site-refresh.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER & PUBLIC NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="RESILIA Home">
+        <img src="assets/images/resilia-lockup-primary.png" alt="RESILIA — The journey of nurturing resilience." class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Public navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link active" aria-current="page">Services</a>
+        <a href="assessments.html" class="nav-link">Assessments</a>
+        <a href="workshops.html" class="nav-link">Workshops</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="referrals.html" class="nav-link">Referrals</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="book.html" class="btn btn-ivory btn-sm">Book an Appointment</a>
+
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         01 — HERO
+         ========================================================================== -->
+    <section class="hero-section-services services-hero-photo" aria-labelledby="hero-title">
+      <div class="container hero-services-grid">
+
+        <!-- Left: copy -->
+        <div class="hero-services-content">
+          <div class="eyebrow fade-in-up">THERAPEUTIC SERVICES</div>
+
+          <h1 id="hero-title" class="hero-services-title fade-in-up delay-1">
+            Psychological Services
+          </h1>
+
+          <p class="hero-services-lead fade-in-up delay-2">
+            Support tailored to the individual, their experiences and their needs.
+          </p>
+        </div>
+
+        <!-- Right: image -->
+        <div class="fade-in-up delay-2">
+          <div class="hero-services-image-frame">
+            <img
+              src="assets/images/services-consultation.jpg"
+              alt="A counselling session in a calm, private consultation room"
+              width="800"
+              height="1000"
+              loading="eager"
+            >
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03 — THERAPEUTIC SERVICES (numbered cards)
+         ========================================================================== -->
+    <section class="section-padding bg-linen" aria-labelledby="services-heading">
+      <div class="container">
+
+        <!-- Section heading -->
+        <div class="fade-in-up">
+          <div class="eyebrow">COUNSELLING &amp; PSYCHOTHERAPY</div>
+          <h2 id="services-heading" style="margin-bottom: 0.75rem;">Therapeutic Services</h2>
+          <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); max-width: 680px; line-height: 1.8;">
+            Resilia offers psychological counselling and psychotherapy for individuals, children, adolescents, couples and families. Therapeutic work is tailored to the individual, drawing on evidence-based frameworks to support emotional wellbeing, self-understanding and meaningful change.
+          </p>
+        </div>
+
+        <!-- Numbered service list -->
+        <div class="services-numbered-list" aria-label="List of therapeutic services">
+
+          <!-- 01 Individual Counselling -->
+          <article class="service-item fade-in-up delay-1" aria-labelledby="svc-01-title">
+            <div class="service-num-display" aria-hidden="true">01</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Individual Counselling</div>
+              <h3 id="svc-01-title" class="service-item-title">Individual Counselling</h3>
+              <p class="service-item-desc">
+                For adults navigating personal, emotional and life-related concerns. Sessions provide a space to explore thoughts, feelings and experiences with support and professional guidance.
+              </p>
+            </div>
+          </article>
+
+          <!-- 02 Adolescent Counselling -->
+          <article class="service-item fade-in-up delay-1" aria-labelledby="svc-02-title">
+            <div class="service-num-display" aria-hidden="true">02</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Adolescent Counselling</div>
+              <h3 id="svc-02-title" class="service-item-title">Adolescent Counselling</h3>
+              <p class="service-item-desc">
+                For teenagers navigating emotional wellbeing, stress, relationships, identity and developmental concerns. Sessions are adapted to the adolescent's pace and comfort.
+              </p>
+            </div>
+          </article>
+
+          <!-- 03 Child Counselling -->
+          <article class="service-item fade-in-up delay-2" aria-labelledby="svc-03-title">
+            <div class="service-num-display" aria-hidden="true">03</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Child Counselling</div>
+              <h3 id="svc-03-title" class="service-item-title">Child Counselling</h3>
+              <p class="service-item-desc">
+                For children experiencing emotional, behavioural, school-related or adjustment concerns. Therapeutic approaches are age-appropriate, creative and child-centred.
+              </p>
+            </div>
+          </article>
+
+          <!-- 04 Anxiety Support -->
+          <article class="service-item fade-in-up delay-2" aria-labelledby="svc-04-title">
+            <div class="service-num-display" aria-hidden="true">04</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Anxiety Support</div>
+              <h3 id="svc-04-title" class="service-item-title">Support for Anxiety</h3>
+              <p class="service-item-desc">
+                Support to understand anxiety, notice patterns and develop practical ways to respond to worry and its impact on daily life.
+              </p>
+            </div>
+          </article>
+
+          <!-- 05 Depression Support -->
+          <article class="service-item fade-in-up delay-2" aria-labelledby="svc-05-title">
+            <div class="service-num-display" aria-hidden="true">05</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Depression Support</div>
+              <h3 id="svc-05-title" class="service-item-title">Support for Depression</h3>
+              <p class="service-item-desc">
+                A supportive space to explore low mood, loss of interest and related challenges, and work toward manageable steps at an individual pace.
+              </p>
+            </div>
+          </article>
+
+          <!-- 06 Stress Management -->
+          <article class="service-item fade-in-up delay-3" aria-labelledby="svc-06-title">
+            <div class="service-num-display" aria-hidden="true">06</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Stress Management</div>
+              <h3 id="svc-06-title" class="service-item-title">Stress Management</h3>
+              <p class="service-item-desc">
+                Practical psychological support to recognize stressors, build coping strategies and restore balance across work, study and personal life.
+              </p>
+            </div>
+          </article>
+
+          <!-- 07 Couples Counselling -->
+          <article class="service-item fade-in-up delay-3" aria-labelledby="svc-07-title">
+            <div class="service-num-display" aria-hidden="true">07</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Couples Counselling</div>
+              <h3 id="svc-07-title" class="service-item-title">Couples Counselling</h3>
+              <p class="service-item-desc">
+                For couples navigating communication difficulties, relationship concerns or significant life transitions. Sessions provide a neutral, supportive space for reflection and dialogue.
+              </p>
+            </div>
+          </article>
+
+          <!-- 08 Family Counselling -->
+          <article class="service-item fade-in-up delay-3" aria-labelledby="svc-08-title">
+            <div class="service-num-display" aria-hidden="true">08</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Family Counselling</div>
+              <h3 id="svc-08-title" class="service-item-title">Family Counselling</h3>
+              <p class="service-item-desc">
+                For families working through interpersonal dynamics, communication patterns or transitions that affect the family system.
+              </p>
+            </div>
+          </article>
+
+          <!-- 09 Grief & Loss -->
+          <article class="service-item fade-in-up delay-3" aria-labelledby="svc-09-title">
+            <div class="service-num-display" aria-hidden="true">09</div>
+            <div class="service-item-body">
+              <div class="service-item-label">Grief &amp; Loss</div>
+              <h3 id="svc-09-title" class="service-item-title">Grief &amp; Loss</h3>
+              <p class="service-item-desc">
+                For individuals processing experiences of grief, loss or significant life change. Sessions provide a space to navigate these experiences with care and psychological support.
+              </p>
+            </div>
+          </article>
+
+        </div><!-- /services-numbered-list -->
+
+        <!-- Section CTA -->
+        <div style="margin-top: var(--space-3xl);" class="fade-in-up">
+          <a href="contact.html" class="btn btn-primary">Enquire About Counselling</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04 — WHO THESE SERVICES ARE FOR
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="who-heading">
+      <div class="container">
+
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-3xl);">
+          <h2 id="who-heading" class="fade-in-up">Who We Work With</h2>
+          <p class="text-lead fade-in-up delay-1" style="margin-top: 0.5rem;">
+            Every stage of life and every relationship brings its own emotional experiences and challenges.
+          </p>
+        </div>
+
+        <div class="audiences-grid">
+
+          <article class="audience-card fade-in-up delay-1">
+            <h3 class="audience-title">CHILDREN</h3>
+            <p class="audience-desc">
+              Emotional, behavioural, school and adjustment-related concerns.
+            </p>
+          </article>
+
+          <article class="audience-card fade-in-up delay-2">
+            <h3 class="audience-title">ADOLESCENTS</h3>
+            <p class="audience-desc">
+              Emotional wellbeing, stress, anxiety, relationships, self-understanding and developmental concerns.
+            </p>
+          </article>
+
+          <article class="audience-card fade-in-up delay-3">
+            <h3 class="audience-title">ADULTS</h3>
+            <p class="audience-desc">
+              Personal, emotional, relational and life-related concerns.
+            </p>
+          </article>
+
+          <article class="audience-card fade-in-up delay-3">
+            <h3 class="audience-title">COUPLES &amp; FAMILIES</h3>
+            <p class="audience-desc">
+              Communication, relationships and family dynamics.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05 — HOW IT WORKS
+         ========================================================================== -->
+    <section class="section-padding" style="background: linear-gradient(135deg, rgba(11, 33, 66, 0.95) 0%, rgba(20, 53, 100, 0.9) 50%, rgba(62, 114, 176, 0.85) 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;" aria-labelledby="how-heading">
+      <div class="container">
+
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto;">
+          <div class="eyebrow eyebrow-on-dark fade-in-up">THE PROCESS</div>
+          <h2 id="how-heading" class="fade-in-up delay-1" style="color: #FFFFFF; margin-bottom: 0.5rem;">How It Works</h2>
+        </div>
+
+        <div class="how-steps-grid">
+
+          <!-- Step 01 -->
+          <div class="how-step-card fade-in-up delay-1">
+            <div class="how-step-num" aria-hidden="true">01</div>
+            <div class="how-step-title">REACH OUT</div>
+            <p class="how-step-desc">
+              Get in touch through the contact form or by phone. Tell us what you are looking for and we will take it from there.
+            </p>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="how-step-card fade-in-up delay-2">
+            <div class="how-step-num" aria-hidden="true">02</div>
+            <div class="how-step-title">INITIAL CONSULTATION</div>
+            <p class="how-step-desc">
+              A first session to understand your concerns, answer any questions and explore how Resilia can support you.
+            </p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="how-step-card fade-in-up delay-2">
+            <div class="how-step-num" aria-hidden="true">03</div>
+            <div class="how-step-title">ONGOING SESSIONS</div>
+            <p class="how-step-desc">
+              Regular sessions tailored to your pace, your needs and your goals — at whatever frequency suits you best.
+            </p>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="how-step-card fade-in-up delay-3">
+            <div class="how-step-num" aria-hidden="true">04</div>
+            <div class="how-step-title">REVIEW &amp; REFLECTION</div>
+            <p class="how-step-desc">
+              Periodic check-ins to review progress, reflect on the work and adjust the approach as needed.
+            </p>
+          </div>
+
+        </div><!-- /how-steps-grid -->
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06 — ASSESSMENTS CALLOUT
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="assessments-callout-heading">
+      <div class="container">
+        <div class="assessments-callout-inner fade-in-up">
+
+          <div>
+            <div class="eyebrow">PSYCHOLOGICAL ASSESSMENTS</div>
+            <h2 id="assessments-callout-heading" style="margin-bottom: 1.25rem;">
+              Understanding More Than Symptoms
+            </h2>
+            <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.8; max-width: 620px; margin-bottom: 0;">
+              Psychological assessments can help build a clearer understanding of cognitive, emotional, behavioural and individual functioning. Assessments at Resilia are detailed, structured and sensitively conducted.
+            </p>
+          </div>
+
+          <div style="flex-shrink: 0;">
+            <a href="assessments.html" class="btn btn-primary">Explore Assessments</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07 — FINAL CTA
+         ========================================================================== -->
+    <section class="final-cta-section-services" aria-labelledby="final-cta-heading">
+      <div class="container" style="max-width: var(--max-width-narrow);">
+
+        <h2 id="final-cta-heading" class="font-display fade-in-up" style="color: #FFFFFF; margin-bottom: 1.25rem;">
+          Ready to take the first step?
+        </h2>
+
+        <p class="text-lead fade-in-up delay-1" style="color: var(--color-text-on-dark-muted); margin-bottom: 2.25rem;">
+          Whether you are looking for psychological support, assessment, professional referral information or a workshop enquiry, you can reach out to Resilia.
+        </p>
+
+        <div class="fade-in-up delay-2" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem;">
+          <a href="book.html" class="btn btn-ivory">Book an Appointment</a>
+          <a href="contact.html" class="btn btn-outline-white">Get in Touch</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+
+        <div>
+          <img src="assets/images/resilia-lockup-white.png" alt="RESILIA — The journey of nurturing resilience." class="footer-logo-img">
+          <div class="footer-tagline">The journey of nurturing resilience.</div>
+          <p class="footer-desc">
+            A psychology and wellbeing practice centred on empathy, individuality, meaningful human connection and the journey of nurturing resilience.
+          </p>
+          <nav class="footer-social-links" aria-label="Social media links">
+            <a href="https://www.linkedin.com/in/rutuja-aughade-58b7b4223" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.3 9.5h3.8v11.2H3.3V9.5Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.7v5.9h-3.8v-5.2c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.3H9.4V9.5Z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/resilia.the.resilience/" target="_blank" rel="noopener noreferrer" aria-label="Resilia on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2.5h9.6a4.7 4.7 0 0 1 4.7 4.7v9.6a4.7 4.7 0 0 1-4.7 4.7H7.2a4.7 4.7 0 0 1-4.7-4.7V7.2a4.7 4.7 0 0 1 4.7-4.7Zm0 2A2.7 2.7 0 0 0 4.5 7.2v9.6a2.7 2.7 0 0 0 2.7 2.7h9.6a2.7 2.7 0 0 0 2.7-2.7V7.2a2.7 2.7 0 0 0-2.7-2.7H7.2Zm4.8 2.4a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2Zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.3-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+            </a>            <a href="https://wa.me/919892589501" target="_blank" rel="noopener noreferrer" aria-label="Chat with Resilia on WhatsApp at +91 9892589501" title="WhatsApp chat">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.3L3 20l1.1-4.7a8.4 8.4 0 1 1 16.3-3.6Z"/><path d="M8.3 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5 0 .3-.1 1.1-.7 1.6-.5.5-1.2.7-1.8.6-.6-.1-1.3-.3-2.2-.8-1.3-.7-2.4-1.8-3.2-3.1-.5-.9-.8-1.8-.7-2.5.1-.6.6-1.1 1-1.2Z"/></svg>
+            </a>
+            <a href="https://substack.com/@rutujaaughade" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on Substack" title="Substack">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v2H4V3Zm0 4h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Navigation
+          </h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="assessments.html">Assessments</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="referrals.html">Referrals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="book.html">Book an Appointment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Contact
+          </h4>
+          <p class="footer-desc" style="margin-bottom: 0.75rem;">
+            <a href="mailto:resilia.the.resilience@gmail.com" style="color: var(--color-ivory);">resilia.the.resilience@gmail.com</a><br>
+            <a href="tel:+919892589501" style="color: var(--color-ivory);">+91 9892589501</a>
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="book.html" class="btn btn-outline-white btn-sm">Book an Appointment</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 RESILIA. All rights reserved. | Rutuja Aughade, Psychologist (Clinical &amp; Counselling) | Facilitator
+        </div>
+        <div style="display: flex; gap: 1.5rem; font-size: var(--font-size-xs);">
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Privacy Policy</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Consent</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Disclaimer</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="assets/js/resilia.js?v=indian-mobile-validation"></script>
+</body>
+</html>
+
+
+
+
+
+

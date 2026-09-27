@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perspectives | RESILIA | Written for the curious mind.</title>
+  <meta name="description" content="Perspectives is Resilia's editorial space — a place for longer reads, reflections and psychological perspectives on everyday topics.">
+  <meta name="theme-color" content="#143564">
+
+  <link rel="icon" type="image/png" href="assets/images/resilia-emblem-primary.png">
+  <link rel="stylesheet" href="assets/css/resilia.css">
+
+  <style>
+    /* ── Page-scoped styles for Resources / Perspectives ── */
+
+    /* Hero variant — text-only, centred, no image column */
+    .resources-hero {
+      background: radial-gradient(ellipse at 60% 0%, rgba(108, 130, 118, 0.22) 0%, transparent 60%),
+                  linear-gradient(135deg, #0B2142 0%, #143564 45%, #204E8A 80%, #3E72B0 100%), url("assets/images/site-gradient-bg.png") center / cover no-repeat;
+      color: var(--color-text-on-dark);
+      padding-top: clamp(8rem, 7rem + 4vw, 11rem);
+      padding-bottom: clamp(5rem, 4rem + 4vw, 8rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resources-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(108, 130, 118, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(62, 89, 108, 0.3) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .resources-hero-inner {
+      position: relative;
+      max-width: var(--max-width-narrow);
+      margin: 0 auto;
+    }
+
+    .resources-hero-subheading {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.1rem);
+      font-weight: 400;
+      color: var(--color-ivory);
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Intro section — narrow editorial column */
+    .resources-intro-col {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* Topics section */
+    .topics-section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .topics-pill-grid-centered {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .topic-chip-resources {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-pill);
+      background: #FFFFFF;
+      border: 1px solid rgba(62, 89, 108, 0.14);
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      color: var(--color-primary-deep);
+      letter-spacing: 0.02em;
+      transition: var(--transition);
+    }
+
+    .topic-chip-resources:hover {
+      background: var(--color-primary-mist);
+      border-color: var(--color-primary);
+    }
+
+    .topics-note {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-style: italic;
+      margin-top: 0.75rem;
+    }
+
+    /* ── Article Cards ── */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: var(--space-2xl);
+    }
+
+    .article-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(62, 89, 108, 0.1);
+      box-shadow: var(--shadow-subtle);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .article-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(62, 89, 108, 0.22);
+    }
+
+    /* Article photography */
+    .article-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      background: var(--color-primary-mist);
+    }
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .article-card:nth-child(2) .article-image img { object-position: center 62%; }
+    .article-card:nth-child(3) .article-image img { object-position: center 48%; }
+
+    .article-body {
+      padding: 1.75rem 1.85rem 2rem 1.85rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .article-topic-tag {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-ivory-warm);
+      border: 1px solid rgba(62, 89, 108, 0.12);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      align-self: flex-start;
+    }
+
+    .article-card-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-lg);
+      font-weight: 500;
+      color: var(--color-primary-deep);
+      line-height: 1.25;
+      margin-bottom: 0.85rem;
+    }
+
+    .article-card-body {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    /* Articles footnote */
+    .articles-footnote {
+      text-align: center;
+      margin-top: 2.75rem;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+
+    /* Mailing List CTA Panel */
+    .mailing-cta-panel {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(62, 89, 108, 0.1);
+      box-shadow: var(--shadow-card);
+      padding: clamp(3rem, 2.5rem + 3vw, 5rem) clamp(2rem, 1.5rem + 4vw, 5.5rem);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .mailing-cta-divider {
+      width: 48px;
+      height: 1px;
+      background: rgba(62, 89, 108, 0.25);
+      margin: 1.5rem auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .articles-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/site-refresh.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER & PUBLIC NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="RESILIA Home">
+        <img src="assets/images/resilia-lockup-primary.png" alt="RESILIA — The journey of nurturing resilience." class="brand-logo-img">
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Public navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="assessments.html" class="nav-link">Assessments</a>
+        <a href="workshops.html" class="nav-link">Workshops</a>
+        <a href="resources.html" class="nav-link active">Resources</a>
+        <a href="referrals.html" class="nav-link">Referrals</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="book.html" class="btn btn-ivory btn-sm">Book an Appointment</a>
+
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         01 — PERSPECTIVES INTRODUCTION
+         ========================================================================== -->
+    <section class="resources-editorial-intro section-padding bg-deep-blue" aria-labelledby="resources-intro-heading">
+      <div class="container">
+        <div class="resources-intro-col fade-in-up">
+          <div class="eyebrow eyebrow-on-dark">PERSPECTIVES</div>
+          <h1 id="resources-intro-heading">Perspectives</h1>
+          <p class="resources-editorial-tagline">Written for the curious mind.</p>
+          <p class="text-lead">
+            Perspectives is Resilia's editorial space — a place for longer reads, reflections and psychological perspectives on everyday topics. Each piece is written to be accessible, thoughtful and relevant to the everyday experiences of individuals and families.
+          </p>
+          <p class="resources-editorial-note">
+            New content will be published periodically. Check back here or get in touch to be added to the mailing list.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03 — TOPICS SECTION
+         ========================================================================== -->
+    <section class="section-padding bg-linen" aria-labelledby="topics-heading">
+      <div class="container">
+        <div class="topics-section-inner fade-in-up">
+
+          <div class="eyebrow" style="justify-content: center;">AREAS OF INTEREST</div>
+          <h2 id="topics-heading" style="margin-bottom: 0.5rem;">What We Write About</h2>
+
+          <div class="topics-pill-grid-centered" role="list" aria-label="Topics covered in Perspectives">
+            <span class="topic-chip-resources" role="listitem">Emotional Wellbeing</span>
+            <span class="topic-chip-resources" role="listitem">Anxiety &amp; Stress</span>
+            <span class="topic-chip-resources" role="listitem">Grief &amp; Loss</span>
+            <span class="topic-chip-resources" role="listitem">Resilience</span>
+            <span class="topic-chip-resources" role="listitem">Relationships</span>
+            <span class="topic-chip-resources" role="listitem">Parenting</span>
+            <span class="topic-chip-resources" role="listitem">Adolescent Mental Health</span>
+            <span class="topic-chip-resources" role="listitem">Self-Compassion</span>
+            <span class="topic-chip-resources" role="listitem">Mindfulness</span>
+          </div>
+
+          <p class="topics-note">Topics are subject to editorial direction and evolve over time.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04 — ARTICLES GRID
+         ========================================================================== -->
+    <section class="section-padding bg-ivory-warm" aria-labelledby="articles-heading">
+      <div class="container">
+
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto;" class="fade-in-up">
+          <div class="eyebrow" style="justify-content: center;">LATEST</div>
+          <h2 id="articles-heading">Articles &amp; Reflections</h2>
+        </div>
+
+        <div class="articles-grid">
+
+          <!-- Card 1 -->
+          <article class="article-card fade-in-up delay-1" aria-label="Coming Soon article on Emotional Wellbeing">
+            <div class="article-image">
+              <img src="assets/images/perspective-emotional-wellbeing.jpg" alt="A colorful sculpture shaped like a head, suggesting the complexity of our inner world" loading="lazy">
+            </div>
+            <div class="article-body">
+              <span class="article-topic-tag">Emotional Wellbeing</span>
+              <h3 class="article-card-title">Coming Soon</h3>
+              <p class="article-card-body">
+                This article is being prepared. Check back here soon for new perspectives from Resilia.
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="article-card fade-in-up delay-2" aria-label="Coming Soon article on Resilience">
+            <div class="article-image">
+              <img src="assets/images/perspective-resilience.jpg" alt="A small green seedling growing among stones, symbolizing resilience" loading="lazy">
+            </div>
+            <div class="article-body">
+              <span class="article-topic-tag">Resilience</span>
+              <h3 class="article-card-title">Coming Soon</h3>
+              <p class="article-card-body">
+                This article is being prepared. Check back here soon for new perspectives from Resilia.
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="article-card fade-in-up delay-3" aria-label="Coming Soon article on Self-Compassion">
+            <div class="article-image">
+              <img src="assets/images/perspective-self-compassion.jpg" alt="Two hands gently holding a small heart, symbolizing care and self-compassion" loading="lazy">
+            </div>
+            <div class="article-body">
+              <span class="article-topic-tag">Self-Compassion</span>
+              <h3 class="article-card-title">Coming Soon</h3>
+              <p class="article-card-body">
+                This article is being prepared. Check back here soon for new perspectives from Resilia.
+              </p>
+            </div>
+          </article>
+
+        </div><!-- /.articles-grid -->
+
+        <p class="articles-footnote fade-in-up">
+          More perspectives will be published here as they become available.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05 — MAILING LIST CTA
+         ========================================================================== -->
+    <section class="section-padding bg-linen" aria-labelledby="mailing-cta-heading">
+      <div class="container">
+        <div class="mailing-cta-panel fade-in-up">
+
+          <!-- Botanical accent -->
+          <div aria-hidden="true" style="margin-bottom: 1.5rem;">
+            <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 58 C32 58 10 44 10 24 C10 13 20 6 32 6 C44 6 54 13 54 24 C54 44 32 58 32 58Z"
+                    fill="rgba(108,130,118,0.22)" stroke="rgba(62,89,108,0.28)" stroke-width="1.5"/>
+              <path d="M32 10 C32 10 32 55 32 58"
+                    stroke="rgba(62,89,108,0.25)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <h2 id="mailing-cta-heading" style="margin-bottom: 0.25rem;">Stay connected.</h2>
+
+          <div class="mailing-cta-divider"></div>
+
+          <p class="text-lead" style="margin-bottom: 2rem;">
+            New articles and perspectives will be shared here as they are published. Get in touch to be added to the Resilia mailing list.
+          </p>
+
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06 — FINAL CTA (Deep Blue)
+         ========================================================================== -->
+    <section class="final-cta-section" aria-labelledby="resources-final-cta-heading">
+      <div class="container" style="max-width: var(--max-width-narrow);">
+
+        <h2 id="resources-final-cta-heading" class="font-display" style="color: #FFFFFF; margin-bottom: 1.25rem;">
+          Ready to take the first step?
+        </h2>
+
+        <p class="text-lead" style="color: var(--color-text-on-dark-muted); margin-bottom: 2.25rem;">
+          Whether you are looking for psychological support, assessment, professional referral information or a workshop enquiry, you can reach out to Resilia.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem;">
+          <a href="book.html" class="btn btn-ivory">Book an Appointment</a>
+          <a href="contact.html" class="btn btn-outline-white">Get in Touch</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+
+        <div>
+          <img src="assets/images/resilia-lockup-white.png" alt="RESILIA — The journey of nurturing resilience." class="footer-logo-img">
+          <div class="footer-tagline">The journey of nurturing resilience.</div>
+          <p class="footer-desc">
+            A psychology and wellbeing practice centred on empathy, individuality, meaningful human connection and the journey of nurturing resilience.
+          </p>
+          <nav class="footer-social-links" aria-label="Social media links">
+            <a href="https://www.linkedin.com/in/rutuja-aughade-58b7b4223" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.3 9.5h3.8v11.2H3.3V9.5Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.7v5.9h-3.8v-5.2c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.3H9.4V9.5Z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/resilia.the.resilience/" target="_blank" rel="noopener noreferrer" aria-label="Resilia on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2.5h9.6a4.7 4.7 0 0 1 4.7 4.7v9.6a4.7 4.7 0 0 1-4.7 4.7H7.2a4.7 4.7 0 0 1-4.7-4.7V7.2a4.7 4.7 0 0 1 4.7-4.7Zm0 2A2.7 2.7 0 0 0 4.5 7.2v9.6a2.7 2.7 0 0 0 2.7 2.7h9.6a2.7 2.7 0 0 0 2.7-2.7V7.2a2.7 2.7 0 0 0-2.7-2.7H7.2Zm4.8 2.4a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2Zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.3-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+            </a>            <a href="https://wa.me/919892589501" target="_blank" rel="noopener noreferrer" aria-label="Chat with Resilia on WhatsApp at +91 9892589501" title="WhatsApp chat">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.3L3 20l1.1-4.7a8.4 8.4 0 1 1 16.3-3.6Z"/><path d="M8.3 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5 0 .3-.1 1.1-.7 1.6-.5.5-1.2.7-1.8.6-.6-.1-1.3-.3-2.2-.8-1.3-.7-2.4-1.8-3.2-3.1-.5-.9-.8-1.8-.7-2.5.1-.6.6-1.1 1-1.2Z"/></svg>
+            </a>
+            <a href="https://substack.com/@rutujaaughade" target="_blank" rel="noopener noreferrer" aria-label="Rutuja Aughade on Substack" title="Substack">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v2H4V3Zm0 4h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Navigation
+          </h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="assessments.html">Assessments</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="referrals.html">Referrals</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="book.html">Book an Appointment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: #FFFFFF; font-family: var(--font-sans); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;">
+            Contact
+          </h4>
+          <p class="footer-desc" style="margin-bottom: 0.75rem;">
+            <a href="mailto:resilia.the.resilience@gmail.com" style="color: var(--color-ivory);">resilia.the.resilience@gmail.com</a><br>
+            <a href="tel:+919892589501" style="color: var(--color-ivory);">+91 9892589501</a>
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="book.html" class="btn btn-outline-white btn-sm">Book an Appointment</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 RESILIA. All rights reserved. | Rutuja Aughade, Psychologist (Clinical &amp; Counselling) | Facilitator
+        </div>
+        <div style="display: flex; gap: 1.5rem; font-size: var(--font-size-xs);">
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Privacy Policy</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Consent</a>
+          <a href="#" style="color: var(--color-text-on-dark-muted);">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/resilia.js?v=indian-mobile-validation"></script>
+</body>
+</html>
+
+
+
+
+
+
