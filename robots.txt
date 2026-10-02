@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://resilia-the-resilience.netlify.app/sitemap.xml

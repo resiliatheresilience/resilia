@@ -17,4 +17,8 @@ for (const page of pages) {
 
 await cp(path.join(root, "assets"), path.join(output, "assets"), { recursive: true });
 
+for (const file of ["robots.txt", "sitemap.xml"]) {
+  await cp(path.join(root, file), path.join(output, file));
+}
+
 console.log(`Prepared ${pages.length} site pages and assets for Netlify.`);
