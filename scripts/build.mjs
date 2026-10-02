@@ -17,7 +17,7 @@ for (const page of pages) {
 
 await cp(path.join(root, "assets"), path.join(output, "assets"), { recursive: true });
 
-for (const file of ["robots.txt", "sitemap.xml"]) {
+for (const file of ["robots.txt", "sitemap.xml", "_headers"]) {
   await cp(path.join(root, file), path.join(output, file));
 }
 
